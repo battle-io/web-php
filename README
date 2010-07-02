@@ -1,0 +1,3 @@
+This is the start of the codewars web side code.
+
+To get started load the sql from init/create.sql into a mysql database on the localhost called codewars and create a user called codewars (this can be configured in application/config/database.php)
