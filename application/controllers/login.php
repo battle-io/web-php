@@ -50,17 +50,39 @@ class Login_Controller extends Controller {
 
 			if($post->validate()) {
 				$user = ORM::factory('user',$post['email']);
-				$user->activation_key = $this->generate_key();
-				$future = time()+60*60;
-				$user->activation_expire = date('YmdHis',$future);
-				$user->save();
-
+				if('True' == $user->email_verified) {
+					$user->generate_key();
 /*
-				//send an email
-				$q = new Pheanstalk_Model('codewars-email');
-				$q->put('password:'.$user->id,Pheanstalk_Model::PRIORITY_HIGH);
+					//send an email
+					$q = new Pheanstalk_Model('codewars-email');
+					$q->put('password:'.$user->id,Pheanstalk_Model::PRIORITY_HIGH);
 */
-				$view = new View('login/recover_sent');
+					$html_email = new View('login/recover_email_html');
+					$text_email = new View('login/recover_email_text');
+
+			                $link = url::site('login/recover/?'
+						.'key='.$user->activation_key
+						.'&id='.$user->id);
+
+					$html_email->host = Kohana::config('core.host');
+					$html_email->link = $link;
+
+					$text_email->link = $link;
+					$text_email->host = Kohana::config('core.host');
+					$email = new Email_Model();
+					$messages = $email->message(array($user->email  => $user->fullname()),
+						'[Code-Wars] Password Recovery',
+						$html_email->render(false),
+						$text_email->render(false));
+
+					if(false === $messages) {
+						$view->message = 'Looks like email has not been configured serverside';
+					} else {
+						$view = new View('login/recover_sent');
+					} 
+				} else {
+					$view->message = 'Your email address was not verified we can not send you a password recovery email';
+				}
 			} else {
 				$view->message = $post->errors('login_errors');
 			}
@@ -73,12 +95,12 @@ class Login_Controller extends Controller {
 
 	public function recover() {
 		$get = new Validation($_GET);
-		$get->add_rules('email', 'required', 'email');
+		$get->add_rules('id', 'required', 'numeric');
 		$get->add_rules('key', 'required', 'alpha_numeric');
 		if($get->validate()) {
 			$user = ORM::factory('user')
 				->where(array(
-					'email'			=> $get['email'],
+					'id'			=> $get['id'],
 					'activation_key'	=> $get['key'],
 					'activation_expire >='	=> date('YmdHis')
 				))
@@ -92,15 +114,5 @@ class Login_Controller extends Controller {
 			}
 		}
 		throw new Kohana_404_Exception('Bad Request');
-	}
-
-	private function generate_key($length = 20) {
-		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-		$password = '';
-		$chars_length = strlen($chars)-1;
-		for ($i = 0; $i < $length; $i++)
-			$password .= $chars[rand(0, $chars_length)];
-		return $password;
 	}
 }

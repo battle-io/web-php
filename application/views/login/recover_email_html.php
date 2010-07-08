@@ -1,14 +1,15 @@
+<!DOCTYPE html>
 <html>
 <body>
-<h1>Homesquare</h1>
+<h1>Codewars</h1>
 
 <p>
 Your password had been claimed to be lost and so we are sending you this email.
 </p>
 
 <p>
-To Recover your login and get back to trying to earn badges <?php
-echo html::anchor($host.$link,'Click Here to go To Homesquare');
+To Recover your login <?php
+echo html::anchor($host.$link,'Click Here');
 ?>
 </p>
 

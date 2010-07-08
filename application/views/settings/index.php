@@ -14,7 +14,7 @@ User - <?php echo html::specialchars($user->name()) ?><br/>
 	echo '<li>',form::label('lastname','Last Name'),
 		form::input('lastname',$user->lastname,'class="text"'),'</li>';
 	echo '<li>',form::label('email','Email'),
-		form::input('email',$user->email,'class="text"'),'</li>';
+		form::input('email',$user->email,'class="text"'), 'Verified: ',$user->email_verified,'</li>';
 
 	echo '<li>',form::label(),form::submit('s','Submit'),'</li>';
 	echo '<li>',html::anchor('settings/password','Change Password'),'</li>';

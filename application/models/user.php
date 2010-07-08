@@ -54,9 +54,27 @@ class User_Model extends Auth_User_Model {
 			$this->lastname = $post['lastname'];
 			if($this->email != $post['email']) {
 				$this->email_verified = 'False';
-				// TODO - trigger email to verify
+				$this->email = $post['email'];
+
+				$this->generate_key();
+
+				$html_email = new View('register/verify_email_html');
+				$html_email->host = Kohana::config('core.host');
+				$link = url::site('register/verify/?'
+					.'key='.$this->activation_key
+					.'&id='.$this->id);
+				$html_email->link = $link;
+
+				$text_email = new View('register/verify_email_text');
+				$text_email->host = Kohana::config('core.host');
+				$text_email->link = $link;
+				$email = new Email_Model();
+
+				$email->message(array($this->email=>$this->fullname()),
+					'[Code-Wars] Welcome to Code-Wars',
+				$html_email->render(false),
+				$text_email->render(false));
 			}
-			$this->email = $post['email'];
 			if($post['password']!==false)
 				$this->password = $post['password'];
 			if(!$this->has(ORM::factory('role', 'login'))) {
@@ -84,4 +102,18 @@ class User_Model extends Auth_User_Model {
 			$array->add_error($field, 'email_exists');
 		}
 	}
+
+	public function generate_key($length = 20) {
+                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+                $key = '';
+                $chars_length = strlen($chars)-1;
+                for ($i = 0; $i < $length; $i++)
+                        $key .= $chars[rand(0, $chars_length)];
+		$this->activation_key = $key;
+
+		$future = time()+60*60;
+		$this->activation_expire = date('YmdHis',$future);
+		$this->save();
+        }
 }
