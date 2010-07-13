@@ -29,7 +29,7 @@
 
 		<!-- copy in the sensitive settings files (ones with passwords) -->
 		<copy todir="application/config">
-			<fileset dir="/Users/ddunlop/test/config"/>
+			<fileset dir="/var/www/codewars/config"/>
 		</copy>
 	</target>
 </project>
