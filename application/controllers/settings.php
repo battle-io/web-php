@@ -16,7 +16,10 @@ class Settings_Controller extends Controller {
 
 	public function index() {
 		if('POST' == $_SERVER['REQUEST_METHOD']) {
-			$_POST['password'] = false;
+			if(isset($_POST['password']) && empty($_POST['password'])
+				&& isset($_POST['password2']) && empty($_POST['password2'])) {
+				$_POST['password'] = false;
+			}
 			$result = $this->user->validate($_POST);
 			if($result===true) {
 				url::redirect('settings');
@@ -26,6 +29,9 @@ class Settings_Controller extends Controller {
 		}
 		$view = new View('settings/index');
 		$view->header = new View('common/header');
+		if(isset($this->user)) {
+			$view->header->user = $this->user;
+		}
 		$view->header->title = 'settings';
 		$view->footer = new View('common/footer');
 
@@ -34,26 +40,5 @@ class Settings_Controller extends Controller {
 		$view->user = $this->user;
 		$view->render(true);
 	}
-
-	public function password() {
-		if('POST' == $_SERVER['REQUEST_METHOD']) {
-			$result = $this->user->setPassword($_POST);
-			if($result===true) {
-				url::redirect('settings');
-			} else {
-				$errors = $result;
-			}
-		}
-		$view = new View('settings/password');
-		$view->header = new View('common/header');
-		$view->header->title = 'settings';
-		$view->footer = new View('common/footer');
-
-		if(isset($errors))
-			$view->errors = $errors;
-
-		$view->render(true);
-	}
-
 }
 ?>

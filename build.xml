@@ -1,0 +1,35 @@
+<project name="codewars-web" default="codewars-web" basedir=".">
+	<property name="logs_directory" location="application/logs/"/>
+	<target name="codewars-web">
+		<echo message="Building codewars-web" />
+
+		<!-- create the logs directory and set the permissions to all writtable -->
+		<mkdir dir="${logs_directory}"/>
+		<chmod dir="${logs_directory}" perm="a+rwx"/>
+
+	</target>
+
+	<target name="prod" depends="codewars-web">
+		<echo message="Building prod" />
+
+		<!-- remove traces of version control -->
+		<delete dir=".git"/>
+
+		<!-- disable display_errors -->
+		<replace file="application/config/config.php"
+			token="$config['display_errors'] = TRUE;"
+			value="$config['display_errors'] = FALSE;"
+		/>
+
+		<!-- set the host to code-wars.com -->
+		<replace file="application/config/config.php"
+			token="$config['host'] = 'http://localhost';"
+			value="$config['host'] = 'http://code-wars.com';"
+		/>
+
+		<!-- copy in the sensitive settings files (ones with passwords) -->
+		<copy todir="application/config">
+			<fileset dir="/Users/ddunlop/test/config"/>
+		</copy>
+	</target>
+</project>

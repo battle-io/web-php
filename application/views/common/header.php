@@ -22,4 +22,18 @@
 	<div id="headerbar">
 		Real-Time Coding Challenges
 	</div>
+	<ul>
+		<?php
+		if(isset($user)) {
+			echo '<li>',html::anchor('user/'.$user->id,$user->name()),'</li>';
+			echo '<li>',html::anchor('settings','Settings'),'</li>';
+			echo '<li>',html::anchor('logout','Logout'),'</li>';
+		}
+		else {
+			echo '<li>',html::anchor('login','Login'),'</li>';
+			echo '<li>',html::anchor('register','Register'),'</li>';
+		}
+		?>
+	</ul>
+	<hr/>
 </div> <!-- #hd -->

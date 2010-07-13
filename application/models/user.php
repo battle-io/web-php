@@ -15,11 +15,11 @@ class User_Model extends Auth_User_Model {
 	}
 
 	public function fullname() {
-		return $this->firstname.' '.$this->lastname;
+		return html::specialchars($this->firstname.' '.$this->lastname);
 	}
 
 	public function name() {
-		return $this->firstname.' '.$this->lastname[0].'.';
+		return html::specialchars($this->firstname.' '.$this->lastname[0].'.');
 	}
 
 	public function setPassword($post) {

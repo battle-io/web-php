@@ -29,7 +29,10 @@ class User_Controller extends Controller {
 
 		$view = new View('user/index');
 		$view->header = new View('common/header');
-		$view->header->title = $user->firstname.' '.$user->lastname[0];
+		$view->header->title = $user->name();
+		if(isset($this->user)) {
+			$view->header->user = $this->user;
+		}
 		$view->footer = new View('common/footer');
 
 		$view->user = $user;
