@@ -16,9 +16,59 @@ class Command_Controller extends Controller {
 		$this->config = Kohana::config('command');
 	}
 
-	function index() {
+	public function index() {
 		$view = new View('command/index');
-		$view->servers = $this->config['servers'];
+		$servers = $this->config['servers'];
+		$this->getRunningServers($servers);
+	
+		$view->servers = $servers;
 		$view->render(true);
+	}
+
+	private function getRunningServers(&$servers) {
+		$running = ORM::factory('command')->find_all();
+		$sys = new System_Model();
+		foreach($running as $cmd) {
+			// check to see if the command is still running
+			if(!$sys->exists($cmd->pid)) {
+				// if it is not running delete it from the db
+				$cmd->delete();
+				continue;
+			}
+			if(isset($servers[$cmd->command])) {
+				if(!isset($servers[$cmd->command]['running'])) {
+					$servers[$cmd->command]['running'] = array();
+				}
+				array_push($servers[$cmd->command]['running'],$cmd->pid);
+			}
+		}
+	}
+
+	public function start() {
+		$name = $this->input->get('command');
+		$command = $this->config['servers'][$name];
+
+		$cmd = new System_Model();
+
+		// fire up the command
+		$pid = $cmd->start($command['command'],$command['directory']);
+
+		// store the name and the pid in the db
+		$command_row = new Command_Model();
+		$command_row->pid = $pid;
+		$command_row->command = $name;
+		$command_row->save();
+
+		url::redirect('command');
+	}
+
+	public function kill($pid) {
+		// kill the command by pid
+		// don't delete from db as the command might not really be dead
+		// let the index run it's check to test
+		$cmd = new System_Model();
+		$cmd->kill($pid);
+
+		url::redirect('command');
 	}
 }

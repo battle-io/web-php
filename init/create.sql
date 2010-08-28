@@ -57,3 +57,10 @@ CREATE TABLE sessions
     data TEXT NOT NULL,
     PRIMARY KEY (session_id)
 );
+
+CREATE TABLE IF NOT EXISTS `commands` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `command` varchar(32) NOT NULL,
+  `pid` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

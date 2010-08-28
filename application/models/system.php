@@ -1,7 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Command_Model {
-	public function start($commandJob) { 
+class System_Model {
+	public function start($commandJob,$directory = false) { 
+		if($directory !== false) {
+			chdir($directory);
+		}
 		$command = $commandJob.' > /dev/null 2>&1 & echo $!'; 
 		exec($command ,$op); 
 		$pid = (int)$op[0]; 
@@ -16,7 +19,7 @@ class Command_Model {
 
 		while( list(,$row) = each($output) ) { 
 
-			$row_array = explode(" ", $row); 
+			$row_array = explode(" ", trim($row)); 
 			$check_pid = $row_array[0]; 
 
 			if($pid == $check_pid) { 

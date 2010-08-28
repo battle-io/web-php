@@ -12,8 +12,15 @@
 <h2>Servers</h2>
 <ul>
 <?php
-	foreach($servers as $name=>$command) {
-		echo '<li>',$name,' - ',$command,'</li>';
+	foreach($servers as $name=>$info) {
+		echo '<li>',html::anchor('/command/start?command='.$name,$name.' - '.$info['command']),'</li>';
+		if(isset($info['running'])) {
+			echo '<ul>';
+			foreach($info['running'] as $pid) {
+				echo '<li>',html::anchor('/command/kill/'.$pid,$pid),'</li>';
+			}
+			echo '</ul>';
+		}
 	}
 ?>
 </ul>
