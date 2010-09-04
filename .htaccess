@@ -5,7 +5,7 @@ RewriteEngine On
 RewriteBase /challenge/
 
 # Protect application and system files from being viewed
-RewriteRule ^(application|modules|system|init) - [F,L]
+RewriteRule ^(application|modules|system|init|.git) - [F,L]
 
 # Allow any files or directories that exist to be displayed directly
 RewriteCond %{REQUEST_FILENAME} !-f
