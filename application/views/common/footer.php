@@ -1,6 +1,6 @@
 
-</div>
 <div id="ft">&copy; <?php echo date('Y') ?></div>
+</div>
 
 <?php
 	if(isset($scripts)) {

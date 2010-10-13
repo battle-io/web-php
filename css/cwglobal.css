@@ -1,0 +1,19 @@
+
+/* 
+ *  Header area
+ */
+ 
+#headerbar {height: 80px; }
+  #userbar {text-align:right;}
+    #userbar li {display:inline; margin-left:6px;}
+  #cw-topbar {}
+  #tagline { clear:both;}
+
+#topnavbar {}
+  #breadcrumb {}
+  #feeds {text-align:right;}
+  
+  
+/* 
+ *   area
+ */
