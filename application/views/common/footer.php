@@ -1,4 +1,4 @@
-
+<hr/>
 <div id="ft">&copy; <?php echo date('Y') ?></div>
 </div>
 

@@ -1,19 +1,62 @@
 
+/*
+ * Applies to all locations
+ */
+
+html { background: url("http://www.lafoodbank.org/images/mainbg.gif") repeat-y scroll center center #1C3A1C; }
+#doc4 { background: #FFFFFF; padding:3px;}
+ 
+p {padding: 10px 0;}
+h2 {font-size: 140%; font-weight:400; line-height:1.2em; margin-top:1.2em;}
+h3 {font-size: 140%; font-weight:400; color: #487858; line-height:1.2em; margin-top:1.2em;}
+
+
 /* 
  *  Header area
  */
  
-#headerbar {height: 80px; }
-  #userbar {text-align:right;}
-    #userbar li {display:inline; margin-left:6px;}
-  #cw-topbar {}
-  #tagline { clear:both;}
+#headersection { }
+  #cw-topbar { font-size: 48px; padding-left: 10px; font-family: Courier New, monospace;}
+   
+  #topnavbar {float: right; font-family:"Trebuchet MS",sans-serif; white-space:nowrap; font-weight:bold;}
+  #topnavbar li { display:block; float:left; list-style-type:none; margin:0; padding:0; }
+  #topnavbar a { display:block; float:left; padding:3em 7px 10px 7px; background: #FFF; color:#487858; }
+  #topnavbar a:hover { color:white; background:#fafafa; color:#1C3A1C; }
 
-#topnavbar {}
-  #breadcrumb {}
-  #feeds {text-align:right;}
+#bannersection { 
+		border-top: 1px solid #000000; border-bottom:1px solid #000000; padding: 20px 0; 
+		background: #EA9701; );
+		background-repeat: repeat-x; 
+		}
+  #tagline { padding-left:60px; font-family: Gill, Helvetica, sans-serif;}
   
-  
+#gammasection { font-size: 11px; font-family: Times News Roman, serif;}
+  #breadcrumb { }
+  #userbar {text-align:right; }
+    #userbar li {display:inline; margin-left:6px;}
+    #userbar a {text-decoration: none;}
+
 /* 
- *   area
+ *  Content area
  */
+
+#content {
+	 padding: 0 10px;
+ }
+
+/* 
+ *  Sidebar area
+ */
+
+#sidebar { padding: 0 2px; }
+
+.widget { padding: 8px 4px; background: #326342; color: #FFF; margin:4px 1px;}
+ .widget h1 {font-size: 140%; font-weight:bold;}
+
+.game {font-size:120%; color: #FFF; margin: 5px 0; padding: 6px;}
+  .game h1 {font-size:24px;}
+ #game-1 {background: #EA9701;}
+ #game-2 {background: #00F;}
+ #game-3 {background: #F00;}
+ #game-4 {background: #444;}
+ 
