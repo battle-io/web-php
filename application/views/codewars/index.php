@@ -2,6 +2,7 @@
 
 <!-- maybe move these lines to the bottom of $header -->
 <div id="bd">
+	<div class="cenwrap">
 	<div id="yui-main">
          <div class="yui-b">
          
@@ -50,5 +51,5 @@
 
 
 <!--  maybe move these lines to the top of the $footer -->
-</div>
+</div></div>
 <?php echo $footer ?>

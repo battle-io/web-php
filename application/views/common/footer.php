@@ -1,5 +1,7 @@
 <hr/>
-<div id="ft">&copy; <?php echo date('Y') ?></div>
+<div id="ft">
+	<div id="footersection">&copy; <?php echo date('Y') ?></div>
+</div>
 </div>
 
 <?php

@@ -17,31 +17,26 @@
 ?>
 </head>
 <body class="yui-skin-sam">
-<div id="doc4" class="yui-t6">
+<div id="doc3" class="yui-t6">
 <!-- id hd is the first YUI horizontal stack, the masthead -->
 <div id="hd">
-    <div id="headersection" class="yui-g">
-    	<div id="cw-topbar" class="yui-u first">
-	    	Code-wars
+	<div id="headersection" class="cenwrap">
+	    <div class="yui-ge">
+	    	<div id="cw-topbar" class="yui-u first"> Code-wars </div>
+		    <div class="yui-u"></div>
 		</div>
-	    <div class="yui-u">
-		   	<ul id="topnavbar"> 
-				<li><a href="#">Home</a></li> 
-				<li><a href="#">Getting Started</a></li> 
-				<li><a href="#">Weblog</a></li> 
-				<li><a href="#">Community</a></li> 
-				<li><a href="#">Wrappers</a></li> 
-			</ul>
-		</div>
+		
+	<div id="tagline">
+		<p>Real-Time Coding Challenges</p>
+		<p>Next Event: University of Colorado EEF Challenge: January 22-23rd, 2011.</p>
+	</div>
 	</div>
 	
-    <div id="bannersection">	
-    	<div id="tagline">Real-Time Coding Challenges</div>
-	</div>
-	
-	<div id="gammasection" class="yui-ge">
-		<div id="breadcrumb" class="yui-u first">HOME >> Breadcrumb</div>
-		<div id="userbar" class="yui-u">
+    <div id="bannersection">
+    	<div class="cenwrap">
+    	<div id="banner" class="yui-g">
+			<div class="yui-u first"></div>
+			<div id="userbar" class="yui-u">
 				<ul>
 				<?php
 				if(isset($user)) {
@@ -55,6 +50,24 @@
 				}
 				?>
 				</ul>
+			</div>
+		</div>
+    	<ul id="topnavbar" class="cenwrap"> 
+			<li><a href="#">Home</a></li> 
+			<li><a href="#">Getting Started</a></li> 
+			<li><a href="#">Weblog</a></li> 
+			<li><a href="#">Community</a></li> 
+			<li><a href="#">Wrappers</a></li> 
+		</ul>
 		</div>
 	</div>
+	
+	<?php /*
+	<div class="cenwrap">
+		<div id="gammasection" class="yui-ge">
+			<div id="breadcrumb" class="yui-u first">HOME >> Breadcrumb</div>
+			<div class="yui-u"></div>		
+		</div>
+	</div>
+	*/ ?>
 </div> <!-- #hd -->
