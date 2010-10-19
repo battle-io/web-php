@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 
 </div></div> <!-- .cenwrap and #bd -->
 
+=======
+>>>>>>> eeb457608811d2d8022b49049e3745fd0bafdf70
 <hr/>
 <div id="ft">
 	<div id="footersection">&copy; <?php echo date('Y') ?></div>
