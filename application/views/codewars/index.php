@@ -1,13 +1,4 @@
 <?php echo $header ?>
-<<<<<<< HEAD
-=======
-
-<!-- maybe move these lines to the bottom of $header -->
-<div id="bd">
-	<div class="cenwrap">
-	<div id="yui-main">
-         <div class="yui-b">
->>>>>>> eeb457608811d2d8022b49049e3745fd0bafdf70
          
 <!-- Main body goes here -->
 <div id="content">
@@ -25,14 +16,8 @@
 
 </div>
 <!-- END Main body -->
-<<<<<<< HEAD
          </div> <!-- .yui-b for main -->
     </div><!-- #yui-main -->
-=======
-         </div>
-    </div>
->>>>>>> eeb457608811d2d8022b49049e3745fd0bafdf70
-
 
 <!-- Move this to a Sidebar view?  -->
 <div id="sidebar" class="yui-b">
@@ -53,16 +38,6 @@
 	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
 	</div> 
 	
-<<<<<<< HEAD
 </div> <!-- .yui-b for sidebar -->
-
-=======
-
 	
-</div>
-
-
-<!--  maybe move these lines to the top of the $footer -->
-</div></div>
->>>>>>> eeb457608811d2d8022b49049e3745fd0bafdf70
 <?php echo $footer ?>

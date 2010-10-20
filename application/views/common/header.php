@@ -53,13 +53,10 @@
 			</div>
 		</div>
     	<ul id="topnavbar" class="cenwrap"> 
-<<<<<<< HEAD
 			<li><a href="/">Home</a></li> 
 			<li><a href="/gettingstarted">Getting Started</a></li> 
-=======
 			<li><a href="#">Home</a></li> 
 			<li><a href="#">Getting Started</a></li> 
->>>>>>> eeb457608811d2d8022b49049e3745fd0bafdf70
 			<li><a href="#">Weblog</a></li> 
 			<li><a href="#">Community</a></li> 
 			<li><a href="#">Wrappers</a></li> 
@@ -75,6 +72,7 @@
 		</div>
 	</div>
 	*/ ?>
+	
 </div> <!-- #hd -->
 
 <div id="bd">
