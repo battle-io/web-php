@@ -22,5 +22,6 @@ class Codewars_Controller extends Template_Controller {
 		}
 		$this->template->header->title = 'Home';
 		$this->template->footer = new View('common/footer');
+ 		$this->template->sidebar = new View('common/sidebar-basic');
 	}
 }

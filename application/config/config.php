@@ -4,7 +4,7 @@
  * then a full URL will be used, eg: http://localhost/kohana/. If it only includes
  * the path, and a site_protocol is specified, the domain will be auto-detected.
  */
-$config['site_domain'] = '/challenge/';
+$config['site_domain'] = '';
 $config['host'] = 'http://localhost';
 
 /**

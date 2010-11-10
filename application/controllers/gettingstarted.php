@@ -21,6 +21,7 @@ class GettingStarted_Controller extends Controller {
 		}
 		$view->header->title = 'Getting Started';
 		$view->footer = new View('common/footer');
+ 		$view->sidebar = new View('common/sidebar-basic');
 		$view->render(true);
 	}
 }
