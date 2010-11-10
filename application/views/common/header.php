@@ -55,8 +55,6 @@
     	<ul id="topnavbar" class="cenwrap"> 
 			<li><a href="/">Home</a></li> 
 			<li><a href="/gettingstarted">Getting Started</a></li> 
-			<li><a href="#">Home</a></li> 
-			<li><a href="#">Getting Started</a></li> 
 			<li><a href="#">Weblog</a></li> 
 			<li><a href="#">Community</a></li> 
 			<li><a href="#">Wrappers</a></li> 
