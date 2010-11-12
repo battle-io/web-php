@@ -10,7 +10,9 @@ class Controller_Settings extends Controller {
 			//now you have access to user information stored in the database
 			View::bind_global('user',$this->user);
 		} else {
-			$this->request->redirect();
+echo 'you are not logged in?';
+exit();
+//			$this->request->redirect();
 		}
 	}
 

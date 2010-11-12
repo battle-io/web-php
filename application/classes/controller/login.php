@@ -7,7 +7,7 @@ class Controller_Login extends Controller {
 		$this->authentic = Auth::instance();
                 if($this->authentic->logged_in()) {
                         $user = $this->authentic->get_user();
-			url::redirect($user->link());
+			$this->request->redirect($user->link());
                 }
 	}
 
@@ -52,31 +52,29 @@ class Controller_Login extends Controller {
 			));
 
 			if($post->check()) {
-				$user = ORM::factory('user',$post['email']);
-				if('True' == $user->email_verified) {
+				$user = ORM::factory('user')
+					->where('email','=',$post['email'])
+					->find();
+				if('False' == $user->email_verified) {
 					$user->generate_key();
 /*
 					//send an email
 					$q = new Pheanstalk_Model('codewars-email');
 					$q->put('password:'.$user->id,Pheanstalk_Model::PRIORITY_HIGH);
 */
-					$html_email = new View('login/recover_email_html');
-					$text_email = new View('login/recover_email_text');
+					$html_email = View::factory('login/recover_email_html');
+					$text_email = View::factory('login/recover_email_text');
 
 			                $link = url::site('login/recover/?'
 						.'key='.$user->activation_key
 						.'&id='.$user->id);
+					View::bind_global('link',$link);
 
-					$html_email->host = Kohana::config('core.host');
-					$html_email->link = $link;
-
-					$text_email->link = $link;
-					$text_email->host = Kohana::config('core.host');
-					$email = new Email_Model();
+					$email = new Model_Email();
 					$messages = $email->message(array($user->email  => $user->fullname()),
 						'[Code-Wars] Password Recovery',
-						$html_email->render(false),
-						$text_email->render(false));
+						$html_email,
+						$text_email);
 
 					if(false === $messages) {
 						$view->set('message','Looks like email has not been configured serverside');
@@ -93,24 +91,28 @@ class Controller_Login extends Controller {
 		$this->request->response = $view;
 	}
 
-	public function recover() {
-		$get = new Validation($_GET);
-		$get->add_rules('id', 'required', 'numeric');
-		$get->add_rules('key', 'required', 'alpha_numeric');
-		if($get->validate()) {
+	public function action_recover() {
+		$get = new Validate($_GET);
+		$get->rules('id', array(
+			'not_empty'	=> array(),
+			'numeric'	=> array(),
+		));
+		$get->rules('key', array(
+			'not_empty'	=> array(),
+			'alpha_numeric'	=> array(),
+		));
+		if($get->check()) {
 			$user = ORM::factory('user')
-				->where(array(
-					'id'			=> $get['id'],
-					'activation_key'	=> $get['key'],
-					'activation_expire >='	=> date('YmdHis')
-				))
+				->where('id','=',$get['id'])
+				->where('activation_key','=',$get['key'])
+				->where('activation_expire','>=',date('YmdHis'))
 				->find();
 			if($user->loaded()) {
 				$user->activation_key = null;
 				$user->activation_expire = null;
 				$user->save();
 				$this->authentic->force_login($user);
-				url::redirect('settings/password');
+				$this->request->redirect('settings');
 			}
 		}
 		throw new Kohana_404_Exception('Bad Request');

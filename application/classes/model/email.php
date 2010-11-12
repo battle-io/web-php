@@ -17,6 +17,7 @@ class Model_Email extends Model {
 
 	public function message($to,$subject,$html_body,$text_body = false,$batch = false) {
 		if(!$this->send) return false;
+		View::set_global('host',$this->config['link_domain']);
 		$message = Swift_Message::newInstance()
 
 			//Give the message a subject
@@ -29,9 +30,9 @@ class Model_Email extends Model {
 			->setTo($to)
 
 			//Give it a body
-			->setBody($html_body,'text/html');
+			->setBody($html_body->render(),'text/html');
 		if($text_body)
-			$message->addPart($text_body,'text/plain');
+			$message->addPart($text_body->render(),'text/plain');
 
 		if($batch)
 			return $this->mailer->batchSend($message);

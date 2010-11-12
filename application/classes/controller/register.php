@@ -34,23 +34,27 @@ class Controller_Register extends Controller {
 	}
 
 	public function action_verify() {
-		$get = new Validation($_GET);
-		$get->add_rules('id', 'required', 'numeric');
-		$get->add_rules('key', 'required', 'alpha_numeric');
-		if($get->validate()) {
+		$get = new Validate($_GET);
+		$get->rules('id', array(
+			'not_empty'	=> array(),
+			'numeric'	=> array(),
+		));
+		$get->rules('key', array(
+			'not_empty'	=> array(),
+			'alpha_numeric'	=> array()
+		));
+		if($get->check()) {
 			$user = ORM::factory('user')
-				->where(array(
-					'id'			=> $get['id'],
-					'activation_key'	=> $get['key']
-				))
+				->where('id','=',$get['id'])
+				->where('activation_key','=',$get['key'])
 				->find();
-			if($user->loaded) {
+			if($user->loaded()) {
 				$user->activation_key = null;
 				$user->activation_expire = null;
 				$user->email_verified = 'True';
 				$user->save();
 				$this->authentic->force_login($user);
-				url::redirect('settings');
+				$this->request->redirect('settings');
 			}
 		}
 		throw new Kohana_404_Exception('Bad Request');

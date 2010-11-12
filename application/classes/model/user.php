@@ -75,21 +75,18 @@ class Model_User extends Model_Auth_User {
 				$this->generate_key();
 
 				$html_email = View::factory('register/verify_email_html');
-				$html_email->set('host',Kohana::config('core.host'));
 				$link = url::site('register/verify/?'
 					.'key='.$this->activation_key
 					.'&id='.$this->id);
-				$html_email->bind('link',$link);
+				View::bind_global('link',$link);
 
 				$text_email = View::factory('register/verify_email_text');
-				$text_email->set('host',Kohana::config('core.host'));
-				$text_email->bind('link',$link);
 				$email = new Model_Email();
 
 				$email->message(array($this->email=>$this->fullname()),
 					'[Code-Wars] Welcome to Code-Wars',
-				$html_email->render(),
-				$text_email->render());
+				$html_email,
+				$text_email);
 			}
 			if(isset($post['password']) && $post['password']!==false)
 				$this->password = $post['password'];
