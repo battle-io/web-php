@@ -1,4 +1,7 @@
-<?php echo $header ?>
+<?php
+echo View::factory('common/header')
+        ->set('title','Getting Started');
+?>
          
 <!-- Main body goes here -->
 <div id="content">
@@ -28,6 +31,7 @@ This is the fun part! You can code your algorithm from scratch, or use one of ou
     </div><!-- #yui-main -->
 
 
-<?php echo $sidebar ?>
+<?php echo View::factory('common/sidebar-basic'); ?>
 
-<?php echo $footer ?>
+<?php
+echo View::factory('common/footer');

@@ -1,40 +1,39 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Register_Controller extends Controller {
-	public function __construct() {
-                parent::__construct();
+class Controller_Register extends Controller {
+	public function before() {
+                parent::before();
 
-		$this->session= Session::instance();
-		$this->authentic=new Auth;
+		$this->authentic = Auth::instance();
                 if($this->authentic->logged_in()) {
                         $this->user = $this->authentic->get_user();
 			//now you have access to user information stored in the database
+			View::bind_global('user',$this->user);
                 }
 
 	}
 
-	function index() {
+	public function action_index() {
 		if('POST' == $_SERVER['REQUEST_METHOD']) {
 			$user = ORM::factory('user');
 			$result = $user->validate($_POST);
 			if($result===true) {
-				Auth::instance()->login($this->input->post('email'),
-					$this->input->post('password')
+				Auth::instance()->login(Arr::get($_POST,'email'),
+					Arr::get($_POST,'password')
 				);
-				url::redirect('user');
+				Request::instance()->redirect('user');
 			}
 			else $errors = $result;
 		}
-		$view = new View('register/index');
-		$view->header = new View('common/header');
-		$view->header->title = 'Register';
-		$view->footer = new View('common/footer');
+		$view = View::factory('register/index');
 
-		if(isset($errors)) $view->errors = $errors;
-		$view->render(true);
+		if(isset($errors)) {
+			$view->bind('errors',$errors);
+		}
+		$this->request->response = $view;
 	}
 
-	public function verify() {
+	public function action_verify() {
 		$get = new Validation($_GET);
 		$get->add_rules('id', 'required', 'numeric');
 		$get->add_rules('key', 'required', 'alpha_numeric');

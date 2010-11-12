@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class User_Model extends Auth_User_Model {
+class Model_User extends Model_Auth_User {
 	protected $has_and_belongs_to_many = array('roles');
  
 	public function unique_key($id = NULL) {
@@ -15,11 +15,11 @@ class User_Model extends Auth_User_Model {
 	}
 
 	public function fullname() {
-		return html::specialchars($this->firstname.' '.$this->lastname);
+		return html::chars($this->firstname.' '.$this->lastname);
 	}
 
 	public function name() {
-		return html::specialchars($this->firstname.' '.$this->lastname[0].'.');
+		return html::chars($this->firstname.' '.$this->lastname[0].'.');
 	}
 
 	public function setPassword($post) {
@@ -35,21 +35,37 @@ class User_Model extends Auth_User_Model {
 	}
 
 	private function validatePassword(&$post) {
-		$post->add_rules('password','required','length[3,40]','matches[password2]');
+		$post->rules('password',array(
+			'not_empty'	=> array(),
+			'min_length'	=> array(3),
+			'max_length'	=> array(40),
+			'matches'	=> array('password2'),
+		));
 	}
 
 	public function validate($post) {
-		$post = new Validation($post);
-		$post->add_rules('firstname','required','length[1,10]');
-		$post->add_rules('lastname','required','length[1,10]');
-		$post->add_rules('email', 'required', 'email','length[3,127]');
-		$post->add_callbacks('email',array($this,'_unique_email'));
+		$post = new Validate($post);
+		$post->rules('firstname',array(
+			'not_empty'	=> array(),
+			'max_length'	=> array(10),
+		));
+		$post->rules('lastname',array(
+			'not_empty'	=> array(),
+			'max_length'	=> array(10),
+		));
+		$post->rules('email',array(
+			'not_empty'	=> array(),
+			'email'		=> array(),
+			'min_length'	=> array(3),
+			'max_length'	=> array(127),
+		));
+		$post->callback('email',array($this,'_unique_email'));
 		if($post['password']!==false)
 			$this->validatePassword($post);
 
 		$errors = array();
 
-		if($post->validate()) {
+		if($post->check()) {
 			$this->firstname = $post['firstname'];
 			$this->lastname = $post['lastname'];
 			if($this->email != $post['email']) {
@@ -58,27 +74,28 @@ class User_Model extends Auth_User_Model {
 
 				$this->generate_key();
 
-				$html_email = new View('register/verify_email_html');
-				$html_email->host = Kohana::config('core.host');
+				$html_email = View::factory('register/verify_email_html');
+				$html_email->set('host',Kohana::config('core.host'));
 				$link = url::site('register/verify/?'
 					.'key='.$this->activation_key
 					.'&id='.$this->id);
-				$html_email->link = $link;
+				$html_email->bind('link',$link);
 
-				$text_email = new View('register/verify_email_text');
-				$text_email->host = Kohana::config('core.host');
-				$text_email->link = $link;
-				$email = new Email_Model();
+				$text_email = View::factory('register/verify_email_text');
+				$text_email->set('host',Kohana::config('core.host'));
+				$text_email->bind('link',$link);
+				$email = new Model_Email();
 
 				$email->message(array($this->email=>$this->fullname()),
 					'[Code-Wars] Welcome to Code-Wars',
-				$html_email->render(false),
-				$text_email->render(false));
+				$html_email->render(),
+				$text_email->render());
 			}
-			if($post['password']!==false)
+			if(isset($post['password']) && $post['password']!==false)
 				$this->password = $post['password'];
-			if(!$this->has(ORM::factory('role', 'login'))) {
-				$this->add(ORM::factory('role', 'login'));
+			$login_role = new Model_Role(array('name' =>'login'));
+			if(!$this->has('roles', $login_role)) {
+				$this->add('roles',$login_role);
 			}
 			if($this->save()) {
 				return true;
@@ -88,18 +105,16 @@ class User_Model extends Auth_User_Model {
 		}
 	}
 
-	public function _unique_email(Validation $array, $field) {
+	public function _unique_email(Validate $array, $field) {
 		// check the database for existing records
 		$email_exists = (bool) ORM::factory('user')
-			->where(array(
-				'email'	=> $array[$field],
-				'id !='	=> $this->id
-			))
+			->where('email','=',$array[$field])
+			->where('id','!=',$this->id)
 			->count_all();
 
 		if ($email_exists) {
 			// add error to validation object
-			$array->add_error($field, 'email_exists');
+			$array->error($field, 'email_exists', array($array[$field]));
 		}
 	}
 

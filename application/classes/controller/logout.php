@@ -1,21 +1,20 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Logout_Controller extends Controller {
-	public function __construct() {
-                parent::__construct();
+class Controller_Logout extends Controller {
+	public function before() {
+                parent::before();
 
-		$this->session= Session::instance();
-		$this->auth=new Auth;
+		$this->auth = Auth::instance();
                 if($this->auth->logged_in()) {
                         $this->user = $this->auth->get_user();
 			//now you have access to user information stored in the database
                 } else {
-			url::redirect('');
+			$this->request->redirect('');
 		}
 	}
 
-	function index() {
+	public function action_index() {
                 $this->auth->logout(true);
-		url::redirect('');
+		$this->request->redirect('');
 	}
 }

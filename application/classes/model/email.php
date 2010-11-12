@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Email_Model extends Model {
+class Model_Email extends Model {
 	public function __construct() {
 		include Kohana::find_file('vendor','Swift/lib/swift_required');
 		$this->config = Kohana::config('email');

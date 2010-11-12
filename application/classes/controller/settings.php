@@ -1,20 +1,20 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Settings_Controller extends Controller {
-	public function __construct() {
-		parent::__construct();
+class Controller_Settings extends Controller {
+	public function before() {
+		parent::before();
 
-		$this->session = Session::instance();
-		$authentic=new Auth;
+		$authentic=Auth::instance();
 		if($authentic->logged_in()) {
 			$this->user = $authentic->get_user();
 			//now you have access to user information stored in the database
+			View::bind_global('user',$this->user);
 		} else {
-			url::redirect();
+			$this->request->redirect();
 		}
 	}
 
-	public function index() {
+	public function action_index() {
 		if('POST' == $_SERVER['REQUEST_METHOD']) {
 			if(isset($_POST['password']) && empty($_POST['password'])
 				&& isset($_POST['password2']) && empty($_POST['password2'])) {
@@ -22,12 +22,12 @@ class Settings_Controller extends Controller {
 			}
 			$result = $this->user->validate($_POST);
 			if($result===true) {
-				url::redirect('settings');
+				$this->request->redirect('settings');
 			} else {
 				$errors = $result;
 			}
 		}
-		$view = new View('settings/index');
+		$view = View::factory('settings/index');
 		$view->header = new View('common/header');
 		if(isset($this->user)) {
 			$view->header->user = $this->user;
@@ -38,7 +38,7 @@ class Settings_Controller extends Controller {
 		
 		if(isset($errors)) $view->errors = $errors;
 		$view->user = $this->user;
-		$view->render(true);
+		$this->request->response = $view;
 	}
 }
 ?>

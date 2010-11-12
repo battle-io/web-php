@@ -1,55 +1,42 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class User_Controller extends Controller {
-	public function __construct() {
-                parent::__construct();
+class Controller_User extends Controller {
+	public function before() {
+                parent::before();
 
-		$this->session= Session::instance();
-		$authentic=new Auth;
+		$authentic= Auth::instance();
                 if($authentic->logged_in()) {
                         $this->user = $authentic->get_user();
 			//now you have access to user information stored in the database
+			View::bind_global('user',$this->user);
                 }
 
 	}
 
-	public function index() {
+	public function action_index() {
 		if(isset($this->user))
-			url::redirect($this->user->link());
-		url::redirect();
+			$this->request->redirect($this->user->link());
+		$this->request->redirect();
 	}
 
 	function __call($user,$arguments) {
-//$this->profiler = new Profiler;
 		$this->profile($user);
 	}
 
-	private function profile($user) {
-		$user = $this->getUser($user);
+	public function action_profile($user_id) {
+		$profile = $this->getUser($user_id);
 
-		$view = new View('user/index');
-		$view->header = new View('common/header');
-		$view->header->title = $user->name();
-		if(isset($this->user)) {
-			$view->header->user = $this->user;
-		}
-		$view->footer = new View('common/footer');
+		$view = View::factory('user/index');
 
-		$view->user = $user;
-		if(isset($this->user)) {
-			$view->loggedin = true;
-			$view->self = $user->id == $this->user->id;
-		} else {
-			$view->loggedin = false;
-			$view->self = false;
-		}
-		$view->render(true);
+		$view->bind('profile',$profile);
+
+		$this->request->response = $view;
 	}
 
 	private function getUser($user) {
 		if(ctype_digit($user)) {
 			$user = ORM::factory('user',$user);
-			if($user->loaded) {
+			if($user->loaded()) {
 				return $user;
 			}
 		}

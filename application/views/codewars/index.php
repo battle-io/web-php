@@ -1,4 +1,7 @@
-<?php echo $header ?>
+<?php
+echo View::factory('common/header')
+	->set('title','Home');
+?>
          
 <!-- Main body goes here -->
 <div id="content">
@@ -19,6 +22,11 @@
          </div> <!-- .yui-b for main -->
     </div><!-- #yui-main -->
 
-<?php echo $sidebar ?>
+<?php
+echo View::factory('common/sidebar-basic');
+?>
 
-<?php echo $footer ?>
+<?php
+echo View::factory('common/footer');
+?>
+

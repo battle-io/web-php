@@ -1,54 +1,57 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Login_Controller extends Controller {
-	public function __construct() {
-                parent::__construct();
+class Controller_Login extends Controller {
+	public function before() {
+                parent::before();
 
-		$this->session= Session::instance();
-		$this->authentic=new Auth;
+		$this->authentic = Auth::instance();
                 if($this->authentic->logged_in()) {
                         $user = $this->authentic->get_user();
 			url::redirect($user->link());
                 }
 	}
 
-	public function index() {
-		$view = new View('login/index');
+	public function action_index() {
+		$view = View::factory('login/index');
 		if('POST' == $_SERVER['REQUEST_METHOD']) {
-			$post = new Validation($_POST);
-			$post->add_rules('email', 'required', 'email');
-			$post->add_rules('password','required');
+			$post = new Validate($_POST);
+			$post->rules('email',array(
+				'not_empty'	=> array(),
+				'email'		=> array()
+			));
+			$post->rule('password','not_empty');
 
-			if($post->validate()) {
-				$user = ORM::factory('user',$post['email']);
-				$this->auth = new Auth();
-				if(!$user->loaded) {
-					$view->message = 'Not a valid user or an incorect password';
+			if($post->check()) {
+				$user = ORM::factory('user')
+					->where('email','=',$post['email'])
+					->find();
+				if(!$user->loaded()) {
+					$view->set('message','Not a valid user or an incorect password');
 				}
-				elseif($this->auth->login($user,$post['password'])) {
-					url::redirect('user');
+				elseif($this->authentic->login($user,$post['password'])) {
+					$this->request->redirect('user');
 				} else {
-					$view->message = 'Not a valid user or an incorect password';
+					$view->set('message','Not a valid user or an incorect password');
 				}
 			} else {
-				$view->message = $post->errors('login_errors');
+				$view->set('message',$post->errors('login_errors'));
 			}
 
 		}
 
-		$view->header = new View('common/header');
-		$view->header->title = 'Login';
-		$view->footer = new View('common/footer');
-		$view->render(true);
+		$this->request->response = $view;
 	}
 
-	public function recover_request() {
-		$view = new View('login/recover');
+	public function action_recover_request() {
+		$view = View::factory('login/recover');
 		if('POST' == $_SERVER['REQUEST_METHOD']) {
-			$post = new Validation($_POST);
-			$post->add_rules('email', 'required', 'email');
+			$post = new Validate($_POST);
+			$post->rules('email', array(
+				'not_empty'	=> array(),
+				'email'		=> array(),
+			));
 
-			if($post->validate()) {
+			if($post->check()) {
 				$user = ORM::factory('user',$post['email']);
 				if('True' == $user->email_verified) {
 					$user->generate_key();
@@ -76,21 +79,18 @@ class Login_Controller extends Controller {
 						$text_email->render(false));
 
 					if(false === $messages) {
-						$view->message = 'Looks like email has not been configured serverside';
+						$view->set('message','Looks like email has not been configured serverside');
 					} else {
-						$view = new View('login/recover_sent');
+						$view = View::factory('login/recover_sent');
 					} 
 				} else {
-					$view->message = 'Your email address was not verified we can not send you a password recovery email';
+					$view->set('message','Your email address was not verified we can not send you a password recovery email');
 				}
 			} else {
-				$view->message = $post->errors('login_errors');
+				$view->set('message',$post->errors('login_errors'));
 			}
 		}
-		$view->header = new View('common/header');
-		$view->header->title = 'Recover';
-		$view->footer = new View('common/footer');
-		$view->render(true);
+		$this->request->response = $view;
 	}
 
 	public function recover() {
@@ -105,7 +105,7 @@ class Login_Controller extends Controller {
 					'activation_expire >='	=> date('YmdHis')
 				))
 				->find();
-			if($user->loaded) {
+			if($user->loaded()) {
 				$user->activation_key = null;
 				$user->activation_expire = null;
 				$user->save();

@@ -1,4 +1,7 @@
-<?php echo $header ?>
+<?php
+echo View::factory('common/header')
+        ->set('title','Login');
+?>
 <?php
 	if(isset($message)) {
 		print_r($message);
@@ -12,4 +15,6 @@
         echo '</ul>';
 	echo form::close();
 ?>
-<?php echo $footer ?>
+<?php
+echo View::factory('common/footer')
+?>
