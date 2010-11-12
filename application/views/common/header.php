@@ -5,15 +5,14 @@
 	$style = array
 	(
 	'http://yui.yahooapis.com/combo?2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css',
-	'css/cwglobal'
+	'css/cwglobal.css'
 	);
 	if(isset($css)) {
 		$style = array_merge($style,$css);
 	}
-	echo html::stylesheet(
-		$style,
-		array_fill(0,count($style),'screen')
-	);
+	foreach($style as $sheet) {
+		echo html::style($sheet);
+	}
 ?>
 </head>
 <body class="yui-skin-sam">

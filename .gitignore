@@ -1,4 +1,3 @@
-/bin
-/system
-/init
-.ht*
+*.swp
+application/logs
+application/cache
