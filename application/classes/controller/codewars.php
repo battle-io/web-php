@@ -3,24 +3,21 @@
 class Controller_Codewars extends Controller_Template {
 	public $template = 'codewars/index';
 
-/*
-	public function __construct($request) {
-                parent::__construct($request);
+	public function before() {
+                parent::before();
 
-		$this->session= Session::instance();
-		$authentic=new Auth;
-                if($authentic->logged_in()) {
-                        $this->user = $authentic->get_user();
+		$this->session = Session::instance('database');
+                if(Auth::instance()->logged_in()!= 0) {
+                        $this->user = Auth::instance()->get_user();
 			//now you have access to user information stored in the database
                 }
 
 	}
-*/
 
 	public function action_index() {
 		$this->template->header = new View('common/header');
 		if(isset($this->user)) {
-			$this->template->header->user = $this->user;
+			View::bind_global('user',$this->user);
 		}
 		$this->template->header->title = 'Home';
 		$this->template->footer = new View('common/footer');
