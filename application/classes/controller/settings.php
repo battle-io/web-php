@@ -14,7 +14,7 @@ class Controller_Settings extends Controller {
 		}
 	}
 
-	public function action_index() {
+	public function action_index($message = false) {
 		if('POST' == $_SERVER['REQUEST_METHOD']) {
 			if(isset($_POST['password']) && empty($_POST['password'])
 				&& isset($_POST['password2']) && empty($_POST['password2'])) {
@@ -28,17 +28,19 @@ class Controller_Settings extends Controller {
 			}
 		}
 		$view = View::factory('settings/index');
-		$view->header = new View('common/header');
-		if(isset($this->user)) {
-			$view->header->user = $this->user;
-		}
-		$view->header->title = 'settings';
-		$view->footer = new View('common/footer');
-
 		
-		if(isset($errors)) $view->errors = $errors;
-		$view->user = $this->user;
+		if(isset($errors)) {
+			$view->bind('errors',$errors);
+		}
+		$view->bind('message',$message);
+
 		$this->request->response = $view;
+	}
+
+	public function action_re_verify() {
+		$sent = $this->user->sendConfirmEmail();
+		if($sent === false) $this->request->redirect('settings');
+		$this->action_index('Confirmation Sent');
 	}
 }
 ?>

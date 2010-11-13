@@ -1,7 +1,13 @@
-<?php echo $header ?>
+<?php
+echo View::factory('common/header')
+        ->set('title','Home');
+?>
 <h2>Your Settings</h2>
 User - <?php echo html::chars($user->name()) ?><br/>
 <?php
+	if($message !== false) {
+		echo '<h2>',html::chars($message),'</h2>';
+	}
 	if(isset($errors)) {
 		echo '<pre>';
 		var_dump($errors);
@@ -14,7 +20,15 @@ User - <?php echo html::chars($user->name()) ?><br/>
 	echo '<li>',form::label('lastname','Last Name'),
 		form::input('lastname',$user->lastname,array('class'=>'text')),'</li>';
 	echo '<li>',form::label('email','Email'),
-		form::input('email',$user->email,array('class'=>'text')), 'Verified: ',$user->email_verified,'</li>';
+		form::input('email',$user->email,array('class'=>'text')), ' ';
+	if($user->email_verified == 'True') {
+		echo 'You have verified this email address';
+	} else {
+		echo 'You have not verified this email addres ',
+			html::anchor('settings/re_verify','Resend Confirmation email');
+	}
+	echo '</li>';
+
         echo '<li>',form::label('password','Password'),' ',
 		form::password('password','',array('autocomplete'=>'off')),'</li>';
         echo '<li>',form::label('password2','Confirm Password'),' ',
@@ -25,4 +39,5 @@ User - <?php echo html::chars($user->name()) ?><br/>
 	echo form::close();
 ?>
 
-<?php echo $footer ?>
+<?php
+echo View::factory('common/footer');

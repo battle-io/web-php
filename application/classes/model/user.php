@@ -74,22 +74,7 @@ class Model_User extends Model_Auth_User {
 			if($this->email != $post['email']) {
 				$this->email_verified = 'False';
 				$this->email = $post['email'];
-
-				$this->generate_key();
-
-				$html_email = View::factory('register/verify_email_html');
-				$link = url::site('register/verify/?'
-					.'key='.$this->activation_key
-					.'&id='.$this->id);
-				View::bind_global('link',$link);
-
-				$text_email = View::factory('register/verify_email_text');
-				$email = new Model_Email();
-
-				$email->message(array($this->email=>$this->fullname()),
-					'[Code-Wars] Welcome to Code-Wars',
-				$html_email,
-				$text_email);
+				$this->sendConfirmEmail();
 			}
 			if(isset($post['password']) && $post['password']!==false)
 				$this->password = $post['password'];
@@ -103,6 +88,28 @@ class Model_User extends Model_Auth_User {
 		} else {
 			return $errors += $post->errors('user_errors');
 		}
+	}
+
+	public function sendConfirmEmail() {
+		if($this->email_verified == 'True') return false;
+		$this->generate_key();
+
+		$html_email = View::factory('register/verify_email_html');
+		$text_email = View::factory('register/verify_email_text');
+
+		$link = url::site('register/verify/?'
+			.'key='.$this->activation_key
+			.'&id='.$this->id);
+
+		View::bind_global('link',$link);
+
+		$email = new Model_Email();
+
+		$email->message(array($this->email=>$this->fullname()),
+			'[Code-Wars] Welcome to Code-Wars',
+			$html_email,
+			$text_email);
+		return true;
 	}
 
 	public function _unique_email(Validate $array, $field) {
