@@ -3,6 +3,10 @@
 	<target name="codewars-web">
 		<echo message="Building codewars-web" />
 
+		<exec executable="git">
+			<arg line="submodule update --init"/>
+		</exec>
+
 		<!-- create the logs directory and set the permissions to all writtable -->
 		<mkdir dir="${logs_directory}"/>
 		<chmod dir="${logs_directory}" perm="a+rwx"/>
@@ -16,15 +20,9 @@
 		<!-- <delete dir=".git"/> -->
 
 		<!-- disable display_errors -->
-		<replace file="application/config/config.php"
-			token="$config['display_errors'] = TRUE;"
-			value="$config['display_errors'] = FALSE;"
-		/>
-
-		<!-- set the host to code-wars.com -->
-		<replace file="application/config/config.php"
-			token="$config['host'] = 'http://localhost';"
-			value="$config['host'] = 'http://code-wars.com';"
+		<replace file="application/bootstrap.php"
+			token="'errors'        => true,"
+			value="'errors'        => false,"
 		/>
 
 		<!-- copy in the sensitive settings files (ones with passwords) -->

@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 /**
  */
-$config = array(
+return array(
 	'servers' => array(
 		'Connect Four' => array(
 			'directory' => '/usr/local/codewars/CW_ConnectFour_thrift',

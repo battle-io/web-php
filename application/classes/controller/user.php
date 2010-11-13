@@ -16,7 +16,7 @@ class Controller_User extends Controller {
 	public function action_index() {
 		if(isset($this->user))
 			$this->request->redirect($this->user->link());
-		$this->request->redirect();
+		$this->request->redirect('');
 	}
 
 	function __call($user,$arguments) {
