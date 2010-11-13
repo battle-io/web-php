@@ -15,7 +15,10 @@ echo View::factory('common/header')
 
 <h2>Bots</h2>
 <?php
-	$bots = $profile->bots->find_all();
+	$bots = $profile
+		->bots
+		->with('server') // pre load the server info
+		->find_all();
 	$servers = array();
 	$bots_by_server = array();
 	foreach($bots as $bot) {
@@ -45,5 +48,3 @@ echo View::factory('common/header')
 <?php
 echo View::factory('common/footer');
 //echo View::factory('profiler/stats');
-
-?>

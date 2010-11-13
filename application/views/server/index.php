@@ -5,7 +5,10 @@ echo View::factory('common/header')
 <h2><?php echo html::chars($server->name)?></h2>
 <h3>This is the Server Page</h3>
 <?php
-	$bots = $server->bots->find_all();
+	$bots = $server
+		->bots
+		->with('user') // preload user
+		->find_all();
 	echo '<ul>';
 	foreach($bots as $bot) {
 		echo '<li>',
