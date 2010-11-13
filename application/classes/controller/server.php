@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Controller_User extends Controller {
+class Controller_Server extends Controller {
 	public function before() {
                 parent::before();
 
@@ -14,26 +14,24 @@ class Controller_User extends Controller {
 	}
 
 	public function action_index() {
-		if(isset($this->user))
-			$this->request->redirect($this->user->link());
-		$this->request->redirect('');
+		$this->request->redirect('servers');
 	}
 
-	public function action_profile($user_id) {
-		$profile = $this->getUser($user_id);
+	public function action_profile($server_id) {
+		$server = $this->getServer($server_id);
 
-		$view = View::factory('user/index');
+		$view = View::factory('server/index');
 
-		$view->bind('profile',$profile);
+		$view->bind('server',$server);
 
 		$this->request->response = $view;
 	}
 
-	private function getUser($user_id) {
-		if(ctype_digit($user_id)) {
-			$user = ORM::factory('user',$user_id);
-			if($user->loaded()) {
-				return $user;
+	private function getServer($server_id) {
+		if(ctype_digit($server_id)) {
+			$server = ORM::factory('server',$server_id);
+			if($server->loaded()) {
+				return $server;
 			}
 		}
 

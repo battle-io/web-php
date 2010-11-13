@@ -2,6 +2,12 @@
 
 class Model_User extends Model_Auth_User {
 	protected $has_and_belongs_to_many = array('roles');
+	protected $_has_many = array(
+		'bots'		=> array('foreign_key'=>'uid'),
+		// from Model_Auth_User:
+		'user_tokens' => array('model' => 'user_token'),
+		'roles'       => array('model' => 'role', 'through' => 'roles_users'),
+	);
  
 	public function link() {
 		return 'user/'.$this->id;
@@ -13,6 +19,10 @@ class Model_User extends Model_Auth_User {
 
 	public function name() {
 		return html::chars($this->firstname.' '.$this->lastname[0].'.');
+	}
+
+	public function uri() {
+		return 'user/'.$this->id;
 	}
 
 	public function setPassword($post) {

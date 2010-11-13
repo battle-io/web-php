@@ -1,6 +1,5 @@
 </div></div> <!-- .cenwrap and #bd -->
 
-<hr/>
 <div id="ft">
 	<div id="footersection">&copy; <?php echo date('Y') ?></div>
 </div>

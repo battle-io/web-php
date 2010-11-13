@@ -61,11 +61,19 @@ h3 {font-size: 140%; font-weight:400; color: #487858; line-height:1.2em; margin-
  .widget h1 {font-size: 140%; font-weight:bold;}
 
 .game {}
- 
+
+/*
+ * Profile Page
+ */
+ul.bots ul {
+	margin:0 0 0 1em;
+} 
  
 /* 
  *  Footer area
  */
+
+#ft {clear:both; padding-top:1em;}
   
- #footersection {width:988px; margin: 0 auto; }
+ #footersection {width:988px; margin: 0 auto; padding: 0.5em 0; text-align:center; font-size:0.7em; border-top:1px solid #ccc; width:45em;}
  
