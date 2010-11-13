@@ -3,13 +3,6 @@
 class Model_User extends Model_Auth_User {
 	protected $has_and_belongs_to_many = array('roles');
  
-	public function unique_key($id = NULL) {
-		if ( ! empty($id) AND is_string($id) AND ! ctype_digit($id) ) {
-			return 'email';
-		}
-		return parent::unique_key($id);
-	}
-
 	public function link() {
 		return 'user/'.$this->id;
 	}

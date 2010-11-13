@@ -30,7 +30,7 @@
 		/>
 
 		<!-- copy in the sensitive settings files (ones with passwords) -->
-		<copy todir="application/config">
+		<copy todir="application/config" verbose="true" overwrite="true">
 			<fileset dir="/var/www/codewars/config"/>
 		</copy>
 	</target>
