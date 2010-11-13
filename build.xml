@@ -1,5 +1,6 @@
 <project name="codewars-web" default="codewars-web" basedir=".">
 	<property name="logs_directory" location="application/logs/"/>
+	<property name="cache_directory" location="application/cache/"/>
 	<target name="codewars-web">
 		<echo message="Building codewars-web" />
 
@@ -10,6 +11,9 @@
 		<!-- create the logs directory and set the permissions to all writtable -->
 		<mkdir dir="${logs_directory}"/>
 		<chmod dir="${logs_directory}" perm="a+rwx"/>
+
+		<mkdir dir="${cache_directory}"/>
+		<chmod dir="${cache_directory}" perm="a+rwx"/>
 
 	</target>
 
