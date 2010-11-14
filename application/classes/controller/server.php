@@ -22,9 +22,17 @@ class Controller_Server extends Controller {
 
 		$view = View::factory('server/index');
 
-		$view->bind('server',$server);
+		if(isset($_POST['s'])) {
+			$posted = Model_Comment::post('server',
+				$server,$this->user,$_POST['text']);
+			$view->bind('posted',$posted);
+		}
 
-		$this->request->response = $view;
+		$comments =  Model_Comment::fetch('server',$server,$this->request->param('page',1));
+
+		$this->request->response = $view
+			->bind('server',$server)
+			->bind('comments',$comments);
 	}
 
 	private function getServer($server_id) {

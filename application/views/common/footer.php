@@ -7,7 +7,12 @@
 
 <?php
 	if(isset($scripts)) {
-		echo html::script($scripts);
+		if(!is_array($scripts)) {
+			$scripts = array($scripts);
+		}
+		foreach($scripts as $script) {
+			echo html::script($script);
+		}
 	}
 
 	$analytics = new View('common/analytics');

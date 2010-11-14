@@ -22,11 +22,19 @@ class Controller_User extends Controller {
 	public function action_profile($user_id) {
 		$profile = $this->getUser($user_id);
 
-		$view = View::factory('user/index');
+		$view = View::factory('user/index') 
+			->bind('profile',$profile);
 
-		$view->bind('profile',$profile);
+		if(isset($_POST['s'])) {
+			$posted = Model_Comment::post('user',
+				$profile,$this->user,$_POST['text']);
+			$view->bind('posted',$posted);
+		}
 
-		$this->request->response = $view;
+		$comments =  Model_Comment::fetch('user',$profile,$this->request->param('page',1));
+
+		$this->request->response = $view
+			->bind('comments',$comments);
 	}
 
 	private function getUser($user_id) {
@@ -37,6 +45,6 @@ class Controller_User extends Controller {
 			}
 		}
 
-		throw new Kohana_404_Exception('Unknown User');
+		throw new Kohana_Exception('Unknown User'.$user_id);
 	}
 }

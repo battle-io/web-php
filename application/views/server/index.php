@@ -18,8 +18,20 @@ echo View::factory('common/header')
 			'</li>';
 	}
 	echo '</ul>';
-?>
 
-<?php
+if(isset($posted)) {
+        if($posted) {
+                '<h3>Thanks for your comment</h3>';
+        }
+        else {
+                echo '<h3>Thanks for your comment it has gone into the moderation queue</h3>';
+        }
+}
+echo View::factory('common/comments')
+        ->set('type','server')
+        ->set('title',$server->name)
+        ->set('parent_id',$server->id)
+        ->bind('comments',$comments);
+
 echo View::factory('common/footer');
 //echo View::factory('profiler/stats');

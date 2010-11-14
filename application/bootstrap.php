@@ -86,9 +86,11 @@ Kohana::modules(array(
 	// 'image'      => MODPATH.'image',      // Image manipulation
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	// 'oauth'      => MODPATH.'oauth',      // OAuth authentication
-	// 'pagination' => MODPATH.'pagination', // Paging of results
+	'pagination' => MODPATH.'pagination', // Paging of results
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
+	'comments'	=> MODPATH.'comments',
+	'b8'		=> MODPATH.'b8',
 	));
 
 /**
@@ -96,7 +98,7 @@ Kohana::modules(array(
  * defaults for the URI.
  */
 Route::set('profiles',
-		'<controller>/<id>',
+		'<controller>/<id>(/<page>)',
 		array('controller' => 'user|server|bot'))
 	->defaults(array(
 		'action'     => 'profile',

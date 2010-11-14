@@ -1,0 +1,8 @@
+li>.hide {
+	display:none;
+	cursor:pointer;
+}
+
+li:hover>.hide {
+	display:inline;
+} 

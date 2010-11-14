@@ -10,3 +10,12 @@
 [submodule "modules/auth"]
 	path = modules/auth
 	url = git://github.com/kohana/auth.git
+[submodule "modules/b8"]
+	path = modules/b8
+	url = https://github.com/stensi/Kohana-B8.git
+[submodule "modules/pagination"]
+	path = modules/pagination
+	url = git://github.com/kohana/pagination.git
+[submodule "modules/comments"]
+	path = modules/comments
+	url = https://github.com/ddunlop/kohana-comments.git

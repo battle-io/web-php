@@ -44,7 +44,22 @@ echo View::factory('common/header')
 		echo '</ul></li>';
 	}
 	echo '</ul>';
-?>
-<?php
-echo View::factory('common/footer');
+if(isset($posted)) {
+        if($posted) {
+                '<h3>Thanks for your comment</h3>';
+        }
+        else {
+                echo '<h3>Thanks for your comment it has gone into the moderation queue</h3>';
+        }
+}
+echo View::factory('common/comments')
+        ->set('type','user')
+        ->set('title',$profile->name())
+        ->set('parent_id',$profile->id)
+        ->bind('comments',$comments);
+echo View::factory('common/footer')
+	->set('scripts',array(
+		'http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js',
+		'scripts/comment_admin.js',
+	));
 //echo View::factory('profiler/stats');

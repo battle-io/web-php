@@ -11,5 +11,20 @@ echo View::factory('common/header')
 ?>
 </ul>
 
+
 <?php
+if(isset($posted)) {
+	if($posted) {
+		'<h3>Thanks for your comment</h3>';
+	}
+	else {
+		echo '<h3>Thanks for your comment it has gone into the moderation queue</h3>';
+	}
+}
+echo View::factory('common/comments')
+	->set('type','bot')
+	->set('title',$bot->name)
+	->set('parent_id',$bot->id)
+	->bind('comments',$comments);
 echo View::factory('common/footer');
+echo View::factory('profiler/stats');

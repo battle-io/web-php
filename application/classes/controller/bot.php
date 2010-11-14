@@ -18,16 +18,24 @@ class Controller_Bot extends Controller {
 	}
 
 	public function action_profile($bot_id) {
-		$bot = $this->getServer($bot_id);
+		$bot = $this->getBot($bot_id);
 
-		$view = View::factory('bot/index');
+		$view = View::factory('bot/index')
+			->bind('bot',$bot);
 
-		$view->bind('bot',$bot);
+		if(isset($_POST['s'])) {
+			$posted = Model_Comment::post('bot',
+				$bot,$this->user,$_POST['text']);
+			$view->bind('posted',$posted);
+		}
 
-		$this->request->response = $view;
+		$comments =  Model_Comment::fetch('bot',$bot,$this->request->param('page',1));
+
+		$this->request->response = $view
+			->bind('comments',$comments);
 	}
 
-	private function getServer($bot_id) {
+	private function getBot($bot_id) {
 		if(ctype_digit($bot_id)) {
 			$bot = ORM::factory('bot',$bot_id);
 			if($bot->loaded()) {
@@ -35,6 +43,6 @@ class Controller_Bot extends Controller {
 			}
 		}
 
-		throw new Kohana_404_Exception('Unknown User');
+		throw new Kohana_Exception('Unknown User');
 	}
 }
