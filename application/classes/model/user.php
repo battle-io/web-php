@@ -5,8 +5,8 @@ class Model_User extends Model_Auth_User {
 	protected $_has_many = array(
 		'bots'		=> array('foreign_key'=>'uid'),
 		// from Model_Auth_User:
-		'user_tokens' => array('model' => 'user_token'),
-		'roles'       => array('model' => 'role', 'through' => 'roles_users'),
+		'user_tokens'	=> array('model' => 'user_token'),
+		'roles'		=> array('model' => 'role', 'through' => 'roles_users'),
 	);
  
 	public function link() {
@@ -125,17 +125,31 @@ class Model_User extends Model_Auth_User {
 		}
 	}
 
-	public function generate_key($length = 20) {
-                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	private static $roles = array();
+	public function has_role($role_name) {
+		if(!isset(Model_User::$roles[$role_name])) {
+			Model_User::$roles[$role_name] = ORM::factory('role')
+				->where('name','=',$role_name)
+				->find();
+		}
+		if(!Model_User::$roles[$role_name]->loaded()) {
+			// not a real role
+			return false;
+		}
+		return $this->has('roles',Model_User::$roles[$role_name]);
+	}
 
-                $key = '';
-                $chars_length = strlen($chars)-1;
-                for ($i = 0; $i < $length; $i++)
-                        $key .= $chars[rand(0, $chars_length)];
+	public function generate_key($length = 20) {
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+		$key = '';
+		$chars_length = strlen($chars)-1;
+		for ($i = 0; $i < $length; $i++)
+			$key .= $chars[rand(0, $chars_length)];
 		$this->activation_key = $key;
 
 		$future = time()+60*60;
 		$this->activation_expire = date('YmdHis',$future);
 		$this->save();
-        }
+	}
 }

@@ -2,8 +2,8 @@
 echo View::factory('common/header')
         ->set('title','Game Servers');
 ?>
-<h2>Game Servers</h2>
-<h3>This is the Servers Page - Lists all the servers</h3>
+<h3>Game Servers</h3>
+<h4>This is the Servers Page - Lists all the servers</h4>
 <?php
 	echo '<ul>';
 	foreach($servers as $server) {

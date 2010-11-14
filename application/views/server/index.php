@@ -2,8 +2,8 @@
 echo View::factory('common/header')
         ->set('title',$server->name.' Server');
 ?>
-<h2><?php echo html::chars($server->name)?></h2>
-<h3>This is the Server Page</h3>
+<h3><?php echo html::chars($server->name)?></h3>
+<h4>This is the Server Page</h4>
 <?php
 	$bots = $server
 		->bots
@@ -21,10 +21,10 @@ echo View::factory('common/header')
 
 if(isset($posted)) {
         if($posted) {
-                '<h3>Thanks for your comment</h3>';
+                '<h4>Thanks for your comment</h4>';
         }
         else {
-                echo '<h3>Thanks for your comment it has gone into the moderation queue</h3>';
+                echo '<h4>Thanks for your comment it has gone into the moderation queue</h4>';
         }
 }
 echo View::factory('common/comments')

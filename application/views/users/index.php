@@ -3,7 +3,7 @@ echo View::factory('common/header')
         ->set('title','Users Admin Tool')
 	->set('css',array('css/admin.css'));
 ?>
-<h2>Users Admin Tool</h2>
+<h3>Users Admin Tool</h3>
 <ul id="user_list">
 <?php
 	$admin_role = new Model_Role(array('name' =>'admin'));

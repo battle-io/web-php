@@ -2,7 +2,7 @@
 echo View::factory('common/header')
         ->set('title','Home');
 ?>
-<h2>Your Settings</h2>
+<h3>Your Settings</h3>
 User - <?php echo html::chars($user->name()) ?><br/>
 <?php
 	if($message !== false) {

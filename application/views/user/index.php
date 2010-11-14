@@ -2,7 +2,7 @@
 echo View::factory('common/header')
         ->set('title',$profile->name());
 ?>
-<h2><?php echo html::chars($profile->name())?></h2>
+<h3><?php echo html::chars($profile->name())?></h3>
 <ul>
 <?php
 	if(isset($user) && $profile->id == $user->id) {
@@ -13,7 +13,7 @@ echo View::factory('common/header')
 ?>
 </ul>
 
-<h2>Bots</h2>
+<h4>Bots</h4>
 <?php
 	$bots = $profile
 		->bots
@@ -46,10 +46,10 @@ echo View::factory('common/header')
 	echo '</ul>';
 if(isset($posted)) {
         if($posted) {
-                '<h3>Thanks for your comment</h3>';
+                '<h4>Thanks for your comment</h4>';
         }
         else {
-                echo '<h3>Thanks for your comment it has gone into the moderation queue</h3>';
+                echo '<h4>Thanks for your comment it has gone into the moderation queue</h4>';
         }
 }
 echo View::factory('common/comments')

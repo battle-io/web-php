@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
 <title><?php echo $title ?> - Code-Wars</title>
 <?php
@@ -21,12 +22,12 @@
 <div id="hd">
 	<div id="headersection" class="cenwrap">
 	    <div class="yui-ge">
-	    	<div id="cw-topbar" class="yui-u first"> Code-wars </div>
+	    	<h1 id="cw-topbar">Code-wars</h1>
 		    <div class="yui-u"></div>
 		</div>
 		
 	<div id="tagline">
-		<p>Real-Time Coding Challenges</p>
+		<h2>Real-Time Coding Challenges</h2>
 		<p>Next Event: University of Colorado EEF Challenge: January 22-23rd, 2011.</p>
 	</div>
 	</div>
@@ -58,6 +59,12 @@
 			<li><a href="#">Community</a></li> 
 			<li><a href="#">Wrappers</a></li> 
 			<li><?php echo html::anchor('servers','Servers'); ?></li> 
+			<?php
+				if(isset($user) && $user->has_role('admin')) {
+					echo '<li class="admin">',html::anchor('users','Users'),'</li>';
+					echo '<li class="admin">',html::anchor('comments','Comments'),'</li>';
+				}
+			?>
 		</ul>
 		</div>
 	</div>

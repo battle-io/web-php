@@ -1,15 +1,13 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
 class Controller_Users extends Controller {
-	public $auth_required = array('admin');
 	public function before() {
                 parent::before();
 
 		$authentic= Auth::instance();
-		$this->admin_role = new Model_Role(array('name' =>'admin'));
                 if($authentic->logged_in()) {
                         $this->user = $authentic->get_user();
-			if($this->user->has('roles',$this->admin_role)) {
+			if($this->user->has_role('admin')) {
 				//now you have access to user information stored in the database
 				View::bind_global('user',$this->user);
 				return;
