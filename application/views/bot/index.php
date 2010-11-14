@@ -27,4 +27,4 @@ echo View::factory('common/comments')
 	->set('parent_id',$bot->id)
 	->bind('comments',$comments);
 echo View::factory('common/footer');
-echo View::factory('profiler/stats');
+//echo View::factory('profiler/stats');
