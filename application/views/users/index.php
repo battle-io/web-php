@@ -64,4 +64,4 @@ echo View::factory('common/footer')
 		'http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js',
 		'scripts/users.js'
 	));
-echo View::factory('profiler/stats');
+//echo View::factory('profiler/stats');

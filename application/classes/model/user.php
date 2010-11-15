@@ -62,11 +62,13 @@ class Model_User extends Model_Auth_User {
 			'min_length'	=> array(3),
 			'max_length'	=> array(127),
 		));
+		$post->rules('key',array(
+			'max_length'	=> array(64),
+			'alpha_dash'	=> array(),
+		));
 		$post->callback('email',array($this,'_unique_email'));
 		if($post['password']!==false)
 			$this->validatePassword($post);
-
-		$errors = array();
 
 		if($post->check()) {
 			$this->firstname = $post['firstname'];
@@ -76,8 +78,11 @@ class Model_User extends Model_Auth_User {
 				$this->email = $post['email'];
 				$this->sendConfirmEmail();
 			}
-			if(isset($post['password']) && $post['password']!==false)
+			if(isset($post['password']) && $post['password']!==false) {
 				$this->password = $post['password'];
+			}
+			$this->key = $post['key'];
+
 			$login_role = new Model_Role(array('name' =>'login'));
 			if(!$this->has('roles', $login_role)) {
 				$this->add('roles',$login_role);
@@ -86,7 +91,7 @@ class Model_User extends Model_Auth_User {
 				return true;
 			}
 		} else {
-			return $errors += $post->errors('user_errors');
+			return $post->errors('user_errors');
 		}
 	}
 

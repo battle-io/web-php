@@ -7,6 +7,7 @@ echo View::factory('common/header')
 <?php
 	if(isset($user) && $profile->id == $user->id) {
 		echo '<li>Welcome ',$user->fullname(),' this is your profile page</li>';
+		echo '<li>Your Bot Key is: ',$profile->key,'</li>';
 	} else {
 		echo '<li>This is the profile page</li>';
 	}

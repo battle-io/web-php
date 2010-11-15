@@ -1,6 +1,6 @@
 <?php
 
-$lang = array(
+return array(
         // Change 'field' to the name of the actual field (e.g., 'email').
 	'email' => array(
 		'required'	=> 'Your email cannot be blank.',
