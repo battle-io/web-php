@@ -33,7 +33,7 @@ User - <?php echo html::chars($user->name()) ?><br/>
 		form::password('password','',array('autocomplete'=>'off')),'</li>';
         echo '<li>',form::label('password2','Confirm Password'),' ',
 		form::password('password2','',array('autocomplete'=>'off')),'</li>';
-	echo '<li>',form::label('key','Bot Key'),' ',
+	echo '<li>',form::label('key','Auth Key'),' ',
 		form::input('key',$user->key,array('class'=>'text')),'</li>';
 
 	echo '<li>',form::submit('s','Submit'),'</li>';
