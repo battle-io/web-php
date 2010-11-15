@@ -25,7 +25,7 @@ class Controller_User extends Controller {
 		$view = View::factory('user/index') 
 			->bind('profile',$profile);
 
-		if(isset($_POST['s'])) {
+		if(isset($this->user) && isset($_POST['s'])) {
 			$posted = Model_Comment::post('user',
 				$profile,$this->user,$_POST['text']);
 			$view->bind('posted',$posted);

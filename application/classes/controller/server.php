@@ -22,7 +22,7 @@ class Controller_Server extends Controller {
 
 		$view = View::factory('server/index');
 
-		if(isset($_POST['s'])) {
+		if(isset($this->user) && isset($_POST['s'])) {
 			$posted = Model_Comment::post('server',
 				$server,$this->user,$_POST['text']);
 			$view->bind('posted',$posted);

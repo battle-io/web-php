@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
+define('PRODUCTION',false);
+
 //-- Environment setup --------------------------------------------------------
 
 /**
@@ -62,7 +64,7 @@ Kohana::init(array(
 	'base_url'	=> '/',
 	'index_file'	=> false,
 	'profile'	=> true,
-	'errors'	=> true,
+	'errors'	=> !PRODUCTION,
 ));
 
 /**
@@ -115,8 +117,16 @@ if ( ! defined('SUPPRESS_REQUEST'))
 	 * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
 	 * If no source is specified, the URI will be automatically detected.
 	 */
-	echo Request::instance()
-		->execute()
-		->send_headers()
+	$request = Request::instance();
+	try {
+		$request->execute();
+	} catch(Exception $e) {
+		if(!PRODUCTION) throw $e;
+
+		Kohana::$log->add(Kohana::ERROR, Kohana::exception_text($e));
+		$request->status = 404;
+		$request->response = View::factory('404');
+	}
+	echo $request->send_headers()
 		->response;
 }

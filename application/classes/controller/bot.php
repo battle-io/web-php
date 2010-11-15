@@ -23,7 +23,7 @@ class Controller_Bot extends Controller {
 		$view = View::factory('bot/index')
 			->bind('bot',$bot);
 
-		if(isset($_POST['s'])) {
+		if(isset($this->user) && isset($_POST['s'])) {
 			$posted = Model_Comment::post('bot',
 				$bot,$this->user,$_POST['text']);
 			$view->bind('posted',$posted);

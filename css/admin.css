@@ -6,3 +6,11 @@ li>.hide {
 li:hover>.hide {
 	display:inline;
 } 
+
+#user_list {
+	width:400px;
+}
+
+#roles_control {
+	float:right;
+}
