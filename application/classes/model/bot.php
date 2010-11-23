@@ -6,6 +6,13 @@ class Model_Bot extends ORM {
 		'server'	=> array('foreign_key' => 'sid'),
 	);
 
+	protected $_rules = array(
+		'name'	=> array(
+			'not_empty'	=> array(),
+			'alpha_dash'	=> array(),
+		),
+	);
+
 	public function uri() {
 		return 'bot/'.$this->id;
 	}

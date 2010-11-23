@@ -19,6 +19,7 @@ echo View::factory('common/header')
 	echo form::close();
 
 	echo '<div id="roles_control">';
+	echo 'Add a Role';
 	echo form::open(null,array('id'=>'add_role'));
 	echo form::input('role');
 	echo form::submit('s','Submit');
@@ -37,6 +38,7 @@ echo View::factory('common/header')
 		echo '</li>';
 	}
 	echo '</ul>';
+	echo '<div>',html::anchor('users/?verified=True','Email Verified'),' (',$verified,')</div>';
 	echo '</div>';
 ?>
 <ul id="user_list">

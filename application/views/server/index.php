@@ -5,6 +5,15 @@ echo View::factory('common/header')
 <h3><?php echo html::chars($server->name)?></h3>
 <h4>This is the Server Page</h4>
 <?php
+	if(isset($user)) {
+		if(isset($errors)) {
+			var_dump($errors);
+		}
+		echo form::open();
+		echo form::label('bot','Bot'),form::input('bot','',array('id'=>'bot'));
+		echo form::submit('sb','Register Bot');
+		echo form::close();
+	}
 	$bots = $server
 		->bots
 		->with('user') // preload user

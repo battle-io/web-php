@@ -19,13 +19,31 @@ class Controller_Server extends Controller {
 
 	public function action_profile($server_id) {
 		$server = $this->getServer($server_id);
-
 		$view = View::factory('server/index');
 
-		if(isset($this->user) && isset($_POST['s'])) {
-			$posted = Model_Comment::post('server',
-				$server,$this->user,$_POST['text']);
-			$view->bind('posted',$posted);
+		if(isset($this->user)) {
+			// Handle adding a bot
+			$bot_name = Arr::get($_POST,'bot',false);
+			if($bot_name !== false) {
+				$bot = ORM::factory('bot');
+				$bot->uid = $this->user;
+				$bot->sid = $server;
+				$bot->name = $bot_name;
+				$bot->online = 0;
+				if($bot->check()) {
+					$bot->save();
+				} else {
+					$view->set('errors',$bot->validate()->errors('bot_errors') );
+				}
+			}
+
+
+			// Handle Comments
+			if(isset($_POST['s'])) {
+				$posted = Model_Comment::post('server',
+					$server,$this->user,$_POST['text']);
+				$view->bind('posted',$posted);
+			}
 		}
 
 		$comments =  Model_Comment::fetch('server',$server,$this->request->param('page',1));

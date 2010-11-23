@@ -28,11 +28,15 @@ class Controller_Users extends Controller {
 			$users = ORM::factory('role',$role)
 				->users;
 		}
+		$ver = Arr::get($_GET,'verified','');
+		if(!empty($ver)) {
+			$users->where('email_verified','=',$ver);
+		}
 
 		$q = Arr::get($_GET,'q','');
 		if(!empty($q)) {
 			$where_q = '%'.$q.'%';
-			$users = $users
+			$users
 				->where_open()
 					->or_where('firstname','LIKE',$where_q)
 					->or_where('lastname','LIKE',$where_q)
@@ -65,9 +69,14 @@ class Controller_Users extends Controller {
 		$roles = ORM::factory('role')
 			->find_all();
 
+		$verified = ORM::factory('user')
+			->where('email_verified','=','True')
+			->count_all();
+
 		$this->request->response = View::factory('users/index')
 			->bind('users',$users)
 			->bind('roles',$roles)
+			->bind('verified',$verified)
 			->bind('role',$role)
 			->bind('q',$q)
 			->bind('total',$total)

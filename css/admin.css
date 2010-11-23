@@ -1,16 +1,21 @@
-li>.hide {
-	display:none;
-	cursor:pointer;
-}
-
-li:hover>.hide {
-	display:inline;
-} 
-
 #user_list {
 	width:400px;
 }
 
 #roles_control {
 	float:right;
+}
+
+#roles_control div {
+	margin:1em 0;
+}
+
+.roles {
+	cursor:pointer;
+}
+
+.user {
+	margin: 0.5em 0;
+	padding: 0 0 0.5em;
+	border-bottom:1px solid #ccc;
 }
