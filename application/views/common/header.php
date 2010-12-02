@@ -54,10 +54,9 @@
 		</div>
     	<ul id="topnavbar" class="cenwrap"> 
 			<li><?php echo html::anchor('','Home'); ?></li> 
-			<li><?php echo html::anchor('gettingstarted','Getting Started'); ?></li> 
-			<li><a href="#">Weblog</a></li> 
+			<li><?php echo html::anchor('gettingstarted','Getting Started'); ?></li>  
 			<li><a href="#">Community</a></li> 
-			<li><a href="#">Wrappers</a></li> 
+			<li><?php echo html::anchor('challenges','Challenges'); ?></li> 
 			<li><?php echo html::anchor('servers','Servers'); ?></li> 
 			<?php
 				if(isset($user) && $user->has_role('admin')) {

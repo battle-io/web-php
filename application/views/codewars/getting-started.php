@@ -5,7 +5,9 @@ echo View::factory('common/header')
          
 <!-- Main body goes here -->
 <div id="content">
-<h3>Getting Started</h3>
+<h2>Getting Started</h2>
+
+<h3>New! Use our Wizard to get started!</h3> 
 
 <a name="register" id="register"></a>
 <p><h4>Step 1: Create a code-wars account.</h4>
