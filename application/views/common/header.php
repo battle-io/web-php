@@ -22,13 +22,15 @@
 <div id="hd">
 	<div id="headersection" class="cenwrap">
 	    <div class="yui-ge">
-	    	<h1 id="cw-topbar">Code-wars</h1>
+	    	<div id="cw-logo">
+	    		<h1 id="cw-topbar">Code-wars</h1>
+	    	</div>
 		    <div class="yui-u"></div>
 		</div>
 		
 	<div id="tagline">
 		<h2>Real-Time Coding Challenges</h2>
-		<p>Next Event: University of Colorado EEF Challenge: January 22-23rd, 2011.</p>
+		<p>Next Event: University of Colorado EEF Challenge: Spring Semester, 2011.</p>
 	</div>
 	</div>
 	
@@ -53,9 +55,8 @@
 			</div>
 		</div>
     	<ul id="topnavbar" class="cenwrap"> 
-			<li><?php echo html::anchor('','Home'); ?></li> 
+			<li class="dim"><?php echo html::anchor('','Home'); ?></li> 
 			<li><?php echo html::anchor('gettingstarted','Getting Started'); ?></li>  
-			<li><a href="#">Community</a></li> 
 			<li><?php echo html::anchor('challenges','Challenges'); ?></li> 
 			<li><?php echo html::anchor('servers','Servers'); ?></li> 
 			<?php
@@ -64,6 +65,7 @@
 					echo '<li class="admin">',html::anchor('comments','Comments'),'</li>';
 				}
 			?>
+			<li class="rightend"><a href="#">Community</a></li> 
 		</ul>
 		</div>
 	</div>

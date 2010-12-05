@@ -6,8 +6,7 @@
  */
 
 html { 
-	/* background: url("http://www.lafoodbank.org/images/mainbg.gif") repeat-y scroll center center #1C3A1C;  */
-    	
+   	
 	}
 
 .cenwrap {width:988px; margin: 0 auto;  }
@@ -16,9 +15,9 @@ html {
 /* 
  * Font styles
  */
-h2 {font-size: 140%; font-weight:400; line-height:1.2em; margin-top:1.2em;}
-h2.punch {font-family: georgia, 'times new roman', times, serif;
- font-size: 140%; font-weight:bold; color: #487858; line-height:1.2em; margin-top:1.2em;}
+h1 { font-size: 48px; font-family: Courier New, monospace;}
+h2 { font-family: georgia, 'times new roman', times, serif; font-size: 140%; font-weight:400; line-height:1.2em; margin-top:1.2em; margin-bottom:2px;}
+h2.punch { font-weight:bold; color: #487858;}
 h3 {color: #487858; font-size: 110%; font-weight:400; line-height:1.2em; margin-top:1.2em;}
 
 
@@ -32,24 +31,26 @@ h3 {color: #487858; font-size: 110%; font-weight:400; line-height:1.2em; margin-
 	filter:alpha(opacity=60);
   	opacity:0.6;
 	}
-  h1 { font-size: 48px; font-family: Courier New, monospace; float:left}
+  #cw-logo {
+  	background: url("../../media/images/code-wars.jpg") no-repeat scroll -10px 0 transparent;
+  	height:60px;}
+  #headersection h1 { float:left; visibility:hidden;}
   #tagline { padding-left:5px; font-family: Gill, Helvetica, sans-serif; font-style:italic;}
   #tagline p {margin-bottom:3px;}
 
 #bannersection { 
-		border-bottom:1px solid #000000;   
+		border-bottom:1px solid #ccc;   
 		}
      
   #topnavbar { font-family:"Trebuchet MS",sans-serif; font-weight:bold; }
-  #topnavbar li { display:block; float:left; list-style-type:none; padding: 0 7px; }
-  #topnavbar a { text-decoration: none; border: 1px solid #000; 
-  	padding: 5px 7px; display:block; float:left; color:#487858; }
-  #topnavbar a:hover { color:white; background:#fafafa; color:#1C3A1C; }
-  #topnavbar li.admin a {
-    background:#ec8380;
-  }
-  
+  #topnavbar a { text-decoration: none; padding: 5px 7px; display:block; float:left; color:#000; }
+	  	#topnavbar a:hover { color:white; background:#fafafa; color:#1C3A1C; }
+  #topnavbar li {border: 1px solid #ccc; border-right:none; display:block; float:left; list-style-type:none; padding: 0 7px; }
+  		#topnavbar li.rightend {border-right:  1px solid #ccc; } 
+ 		#topnavbar li.admin a { background:#ec8380; }
+  		#topnavbar li.dim a {color: #777; } 
   #banner {}
+
 #gammasection { margin-top: 30px;
 	font-size: 11px; font-family: Times News Roman, serif;}
   #breadcrumb { }
@@ -64,8 +65,8 @@ h3 {color: #487858; font-size: 110%; font-weight:400; line-height:1.2em; margin-
 #content {
 	font-family: georgia, 'times new roman', times, serif;
 }
+	#content.home { }
 	#content p {padding: 10px 0;}
-	#content.home { margin: 0 0 0 20px; }
 	#content h3.punch { margin: 1.2em 0 0 0px; }
 	#content h4 {text-decoration:underline; margin-bottom:3px;}
 
@@ -133,4 +134,11 @@ ul.bots ul {
 #ft {clear:both; padding-top:1em;}
   
  #footersection {width:988px; margin: 0 auto; padding: 0.5em 0; text-align:center; font-size:0.7em; border-top:1px solid #ccc; width:45em;}
+ 
+
+ /*
+ * Reference
+ * Global green color:#487858;
+ * background shading (for admin etc): #ec8380; 
+*/
  
