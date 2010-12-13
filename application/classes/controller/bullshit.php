@@ -29,10 +29,10 @@ class Controller_Bullshit extends Controller_Template {
 	  echo View::factory("bullshit/index");
 	  $this->footers();
 	}
-	public function action_about(){
-	  $this->title = "About Bullshit";
+	public function action_wrappers(){
+	  $this->title = "Bullshit Wrappers";
   	$this->headers();
-	  echo View::factory("bullshit/about");
+	  echo View::factory("bullshit/wrappers");
 	  $this->footers();
 	}
 }
