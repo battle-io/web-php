@@ -142,6 +142,10 @@ ul.bots ul {
 #ft {clear:both; padding-top:1em;}
   
  #footersection {width:988px; margin: 0 auto; padding: 0.5em 0; text-align:center; font-size:0.7em; border-top:1px solid #ccc; width:45em;}
+
+.error {
+  border-color:red;
+}
  
 
  /*
@@ -149,4 +153,3 @@ ul.bots ul {
  * Global green color:#487858;
  * background shading (for admin etc): #ec8380; 
 */
- 

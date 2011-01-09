@@ -4,21 +4,49 @@ echo View::factory('common/header')
 ?>
 
 <?php
-	if(isset($errors)) {
-		echo '<pre>';
-		var_dump($errors);
-		echo '</pre>';
-	}
-	echo form::open();
-	echo '<ul class="reg">';
-	echo '<li>',form::label('firstname','First Name'),form::input('firstname','',array('class'=>'text')),'</li>';
-	echo '<li>',form::label('lastname','Last Name'),form::input('lastname','',array('class'=>'text')),'</li>';
-	echo '<li>',form::label('email','Email'),form::input('email','',array('class'=>'text')),'</li>';
-	echo '<li>',form::label('password','Password'),form::password('password','',array('class'=>'text')),'</li>';
-	echo '<li>',form::label('password2','Confirm Password'),form::password('password2','',array('class'=>'text')),'</li>';
-	echo '<li>',form::submit('j','Join'),'</li>';
-	echo '</ul>';
-	echo form::close();
+
+  $fields = array(
+    'firstname' => 'First Name',
+    'lastname' => 'Last Name',
+    'email' => 'Email',
+    'password' => 'Password',
+    'password2' => 'Confirm Password',
+  );
+  echo form::open();
+  echo '<ul class="reg">';
+  $has_errors = false;
+  if(isset($errors)) {
+    $has_errors = true;
+  }
+  foreach($fields as $key => $label) {
+    $value = '';
+    $attr = array('class'=>'text');
+    $error = '';
+    $input_type = 'input';
+
+    if($key == 'password' || $key == 'password2') {
+      $input_type = 'password';
+    }
+
+    // if there are errors add some more info
+    if($has_errors) {
+      // reuse the values that were set except for password fields
+      if('password' != $input_type) {
+	$value = $values[$key];
+      }
+
+      // for the fields that were errors add a class to the form
+      // and display the error
+      if(isset($errors[$key])) {
+	$attr['class'] .= ' error';
+	$error = $errors[$key];
+      }
+    }
+    echo '<li>',form::label($key,$label),form::$input_type($key,$value,$attr),$error,'</li>';
+  }
+  echo '<li>',form::submit('j','Join'),'</li>';
+  echo '</ul>';
+  echo form::close();
 ?>
 <?php
 echo View::factory('common/footer');

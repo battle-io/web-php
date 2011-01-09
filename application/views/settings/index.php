@@ -5,40 +5,56 @@ echo View::factory('common/header')
 <h3>Your Settings</h3>
 User - <?php echo html::chars($user->name()) ?><br/>
 <?php
-	if($message !== false) {
-		echo '<h2>',html::chars($message),'</h2>';
-	}
-	if(isset($errors)) {
-		echo '<pre>';
-		var_dump($errors);
-		echo '</pre>';
-	}
-	echo form::open();
-	echo '<ul class="reg">';
-	echo '<li>',form::label('firstname','First Name'),
-		form::input('firstname',$user->firstname,array('class'=>'text')),'</li>';
-	echo '<li>',form::label('lastname','Last Name'),
-		form::input('lastname',$user->lastname,array('class'=>'text')),'</li>';
-	echo '<li>',form::label('email','Email'),
-		form::input('email',$user->email,array('class'=>'text')), ' ';
-	if($user->email_verified == 'True') {
-		echo 'You have verified this email address';
-	} else {
-		echo 'You have not verified this email addres ',
-			html::anchor('settings/re_verify','Resend Confirmation email');
-	}
-	echo '</li>';
+  if($message !== false) {
+    echo '<h2>',html::chars($message),'</h2>';
+  }
 
-        echo '<li>',form::label('password','Password'),' ',
-		form::password('password','',array('autocomplete'=>'off')),'</li>';
-        echo '<li>',form::label('password2','Confirm Password'),' ',
-		form::password('password2','',array('autocomplete'=>'off')),'</li>';
-	echo '<li>',form::label('key','Auth Key'),' ',
-		form::input('key',$user->key,array('class'=>'text')),'</li>';
+  $fields = array(
+    'firstname' => 'First Name',
+    'lastname' => 'Last Name',
+    'email' => 'Email',
+    'password' => 'Password',
+    'password2' => 'Confirm Password',
+    'key' => 'Auth Key',
+  );
+      
+  echo form::open();
+  echo '<ul class="reg">';
+  foreach($fields as $key => $label) {
+    if($key != 'password2') {
+      $value = $user->$key;
+    }
+    $input_type = 'input';
+    $attr = array('class'=>'text');
+    $error = '';
+    $extra = '';
 
-	echo '<li>',form::submit('s','Submit'),'</li>';
-	echo '</ul>';
-	echo form::close();
+    if('password' == $key || 'password2' == $key) {
+      $input_type = 'password';
+      $value = '';
+      $attr['autocomplete'] ='off';
+    }
+
+    if(isset($errors[$key])) {
+      $error = $errors[$key];
+      $attr['class'] .= ' error';
+    }
+
+    if('email' == $key) {
+      if($user->email_verified == 'True') {
+	$extra = 'You have verified this email address';
+      } else {
+	$extra = 'You have not verified this email addres '.
+	  html::anchor('settings/re_verify','Resend Confirmation email');
+      }
+    }
+
+    echo '<li>',form::label($key,$label),form::$input_type($key,$value,$attr),$error,$extra,'</li>';
+  }
+
+  echo '<li>',form::submit('s','Submit'),'</li>';
+  echo '</ul>';
+  echo form::close();
 ?>
 
 <?php
