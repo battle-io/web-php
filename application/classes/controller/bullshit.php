@@ -15,12 +15,10 @@ class Controller_Bullshit extends Controller_Template {
 	}
 
   public function headers(){
-    echo View::factory('common/header')->set('title', $this->title);
-    echo View::factory("bullshit/submenu");
+    echo View::factory('bullshit/common/header')->set('title', $this->title);
   }
   public function footers(){
-    echo View::factory('common/sidebar-basic');
-    echo View::factory('common/footer');
+    echo View::factory('bullshit/common/footer');
   }
 
 	public function action_index() {

@@ -1,7 +1,5 @@
 
 <!-- Main body goes here -->
-<div id="content" class="home">
-
 <h2>Welcome</h2>
 <p>
   The 2010 programming and cooperative knowledge (PACK) competition, sponsored by CU's <a href="http://eef.colorado.edu">Engineering Excellence Fund</a>, the <a href="http://amath.colorado.edu">Department of Applied Mathematics</a>, and <a href="http://code-wars.com">Code Wars</a> is proud to present this year's challenge: Bullshit!
@@ -111,9 +109,4 @@ If more than one player chooses to call challenge the same claim, the priority i
 <p>
   When a player has played their last card(s), as with all other rounds, the remaining players have the opportunity to challenge the call. The game is over when either: 1) No players challenge the call, or 2) The call is challenged by another player, and confirmed to be truthful.
 </p>
-
-</div>
-<!-- END Main body -->
-         </div> <!-- .yui-b for main -->
-    </div><!-- #yui-main -->
 
