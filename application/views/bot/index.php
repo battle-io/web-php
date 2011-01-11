@@ -11,6 +11,28 @@ echo View::factory('common/header')
 ?>
 </ul>
 
+<?php if(isset($stats)) { ?>
+<h3>Last 10 Games</h3>
+<ol class="stats">
+<?php
+  foreach($stats as $game) {
+    echo '<li>',$game->DatePlayed,' ',
+      html::anchor($game->bot1->uri(),$game->bot1->name),', ',
+      html::anchor($game->bot2->uri(),$game->bot2->name),', ',
+      html::anchor($game->bot3->uri(),$game->bot3->name),', ',
+      html::anchor($game->bot4->uri(),$game->bot4->name),
+      ' Winner: ',
+      html::anchor($game->winner->uri(),$game->winner->name),' ',
+      '<span>Show History</span>',
+      '<div class="history">',
+      '<pre>',$game->GameHistory,'</pre>',
+      '</div>',
+      '</li>';
+  }
+?>
+</ol>
+<?php } ?>
+
 
 <?php
 if(isset($posted)) {
@@ -26,5 +48,9 @@ echo View::factory('common/comments')
 	->set('title',$bot->name)
 	->set('parent_id',$bot->id)
 	->bind('comments',$comments);
-echo View::factory('common/footer');
+echo View::factory('common/footer')
+  ->set('scripts',array(
+    'http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js',
+    'scripts/bot.js'
+  ));
 //echo View::factory('profiler/stats');

@@ -13,7 +13,7 @@ echo View::factory('common/header')
 			$server->online?'Online':'Offline',
 			'<ul>',
 				'<li>Number of Bots ',$server->bots->count_all(),'</li>',
-			'</li>';
+			'</ul>';
 	}
 	echo '</ul>';
 ?>

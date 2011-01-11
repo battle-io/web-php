@@ -153,3 +153,15 @@ ul.bots ul {
  * Global green color:#487858;
  * background shading (for admin etc): #ec8380; 
 */
+
+
+.stats span {
+  color:#487858;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+.stats .history {
+  display:none;
+  margin:0 0 0 0.5em;
+}
