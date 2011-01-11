@@ -8,7 +8,7 @@ echo View::factory('common/header')
 	echo '<ul>';
 	foreach($servers as $server) {
 		echo '<li>',
-			html::anchor($server->uri(),$server->name),
+			html::anchor($server->uri(),$server->id),
 			' ',
 			$server->online?'Online':'Offline',
 			'<ul>',
