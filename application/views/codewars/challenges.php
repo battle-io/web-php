@@ -18,10 +18,18 @@ A simple demonstration game which asks users to determine the correct angle at w
 <div class="challenge-links">- Game Rules - Research - Servers - Bots -</div> 
 </p>
 
+<p><h4>EEF Challenge</h4>
+This new challenge will be open to all after the private competition for University of Colorado at Boulder has concluded. Stay tuned!<br />
+<div class="challenge-links">- Game Rules - Research - Servers - Bots -</div>
+</p>
+
+<?php /*
 <p><h4><a href="/bullshit/">Bullshit</a></h4>
 Currently closed for a private challenge. Bullshit is a card game for which good solutions may need to incorporate card-counting, statistical analysis, and game theory. Completely conservative solutions are not possible, as it is improbable for a player to be able to win a game without making a false claim. <br />
-<div class="challenge-links">- Game Rules - Research - Servers - Bots -</div> 
+<div class="challenge-links">- Game Rules - Research - Servers - Bots -</div>
 </p>
+*/ ?> 
+
 <br /><br />
 <hr />
 <h3>Upcoming challenges</h3>
