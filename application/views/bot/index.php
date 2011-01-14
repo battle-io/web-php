@@ -12,7 +12,10 @@ echo View::factory('common/header')
 </ul>
 
 <?php if(isset($stats)) { ?>
-<h3>Last 10 Games</h3>
+<h3>Last <?php echo count($stats),
+  ' ',
+  ucfirst(Inflector::singular('games',count($stats)));
+ ?> of <?php echo $game_count ?></h3>
 <ol class="stats">
 <?php
   foreach($stats as $game) {

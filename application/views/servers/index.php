@@ -8,12 +8,12 @@ echo View::factory('common/header')
 	echo '<ul>';
 	foreach($servers as $server) {
 		echo '<li>',
-			html::anchor($server->uri(),$server->id),
+			html::anchor($server->uri(),$server->name),
 			' ',
 			$server->online?'Online':'Offline',
 			'<ul>',
 				'<li>Number of Bots ',$server->bots->count_all(),'</li>',
-			'</ul>';
+			'</li>';
 	}
 	echo '</ul>';
 ?>

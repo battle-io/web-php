@@ -1,8 +1,8 @@
 <?php
 echo View::factory('common/header')
-        ->set('title',$server->id.' Server');
+        ->set('title',$server->name.' Server');
 ?>
-<h3><?php echo html::chars($server->id)?></h3>
+<h3><?php echo html::chars($server->name)?></h3>
 <h4>This is the Server Page</h4>
 <?php
 	if(isset($user)) {
@@ -38,7 +38,7 @@ if(isset($posted)) {
 }
 echo View::factory('common/comments')
         ->set('type','server')
-        ->set('title',$server->id)
+        ->set('title',$server->name)
         ->set('parent_id',$server->id)
         ->bind('comments',$comments);
 
