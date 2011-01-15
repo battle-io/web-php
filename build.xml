@@ -31,7 +31,25 @@
 
 		<!-- copy in the sensitive settings files (ones with passwords) -->
 		<copy todir="application/config" verbose="true" overwrite="true">
-			<fileset dir="/var/www/codewars/config"/>
+			<fileset dir="/var/www/codewars/config-prod"/>
+		</copy>
+	</target>
+
+	<target name="stage" depends="codewars-web">
+		<echo message="Building stage" />
+
+		<!-- remove traces of version control -->
+		<!-- <delete dir=".git"/> -->
+
+		<!-- disable display_errors -->
+		<replace file="application/bootstrap.php"
+			token="define('PRODUCTION',false);"
+			value="define('PRODUCTION',true);"
+		/>
+
+		<!-- copy in the sensitive settings files (ones with passwords) -->
+		<copy todir="application/config" verbose="true" overwrite="true">
+			<fileset dir="/var/www/codewars/config-stage"/>
 		</copy>
 	</target>
 </project>
