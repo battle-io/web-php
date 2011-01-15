@@ -28,7 +28,7 @@ class Controller_Bot extends Controller {
 	->reset(false) // tell not to reset the query after the count
 	->bot($bot_id);
       $game_count = $stats->count_all();
-      $stats= $stats
+      $stats = $stats
 	->order_by('DatePlayed','DESC')
 	->limit(10)
 	->find_all()
