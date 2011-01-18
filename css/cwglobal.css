@@ -24,8 +24,8 @@ li { display:block; list-style-type:none; padding: 0 7px; }
 h1 { font-size: 48px; font-family: Courier New, monospace;}
 h2 { font-family: georgia, 'times new roman', times, serif; font-size: 140%; font-weight:400; line-height:1.2em; margin-top:1.2em; margin-bottom:2px;}
 	h2.punch { font-weight:bold; color: #487858;}
-h3 {color: #487858; font-size: 110%; font-weight:400; line-height:1.2em; margin-top:1.2em;}
-h4 { font-size: 120%; font-weight:bold; margin:1em 0 0.3em; }
+h3 {color: #487858; font-size: 120%; font-weight:400; line-height:1.2em; margin-top:1.2em;}
+h4 { font-size: 110%; font-weight:bold; margin:1em 0 0.3em; }
 
 
 /* 
@@ -93,7 +93,6 @@ h4 { font-size: 120%; font-weight:bold; margin:1em 0 0.3em; }
  *   Specific for certain pages. --- This should be moved to a different CSS file? -- 
  */
 
-.challenge-links{ color: #487858;  } 
 
 /* 
  *  Sidebar area
@@ -134,6 +133,16 @@ h4 { font-size: 120%; font-weight:bold; margin:1em 0 0.3em; }
 ul.bots ul {
 	margin:0 0 0 1em;
 } 
+
+
+/*
+ * Challenges Page
+ */
+#challengepage {}
+#challengepage .buttons{ text-align:center; } 
+#challengepage .button{ display:inline;}
+#challengepage .button .button-number{ font-size: 40px;}
+#challengepage .links{ color: #487858;  } 
 
 
 /*
