@@ -63,7 +63,7 @@ We would be remiss to create a coding competition playground without chess.<br /
     </div><!-- #yui-main -->
 
 
-<?php echo View::factory('common/sidebar-basic'); ?>
+<?php echo View::factory('common/sidebar-signup'); ?>
 
 <?php
 echo View::factory('common/footer');
