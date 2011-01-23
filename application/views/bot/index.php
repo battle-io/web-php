@@ -1,13 +1,43 @@
 <?php
 echo View::factory('common/header')
+        ->set('nosidebar',1)
         ->set('title',$bot->name.' Bot');
+        
 ?>
-<h3><?php echo html::chars($bot->name)?></h3>
-<h4>This is the Bot Page</h4>
+<div id="botprofilepage">
+<h3>Bot Profile for <?php echo html::chars($bot->name)?></h3>
+
+<div class="yui-gd">
+
+<div id="botinfo" class="yui-gd first">
+	<div class="yui-u first leftinfo">
+		Bot Name:<br />
+		Author:<br />
+		Challenge:<br />
+		Coding Lanuage:<br />
+		Created on:<br />
+		Last online:<br/>
+		Author's Notes:<br />
+	</div>
+	<div class="yui-u rightinfo" >
+		<?php echo html::chars($bot->name)?><br />
+		<?php echo html::anchor($bot->user->uri(),$bot->user->name()); ?><br />
+		$challenge<br />
+		$language<br />
+		$created_date<br />
+		$last_login<br />
+		$author_notes<br />
+	</div>
+</div>
+
+<div id="perfchart" class="yui-u">
+Performance chart here.
+</div>
+
+</div>
 <ul>
 <?php
 	echo '<li>server ',html::anchor($bot->server->uri(),$bot->server->name),'</li>';
-	echo '<li>the bot was created by ',html::anchor($bot->user->uri(),$bot->user->name()),'</li>';
 ?>
 </ul>
 
@@ -51,9 +81,14 @@ echo View::factory('common/comments')
 	->set('title',$bot->name)
 	->set('parent_id',$bot->id)
 	->bind('comments',$comments);
+?>
+</div>
+
+<?php
 echo View::factory('common/footer')
   ->set('scripts',array(
     'http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js',
     'scripts/bot.js'
   ));
 //echo View::factory('profiler/stats');
+?>

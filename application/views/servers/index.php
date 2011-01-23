@@ -35,3 +35,4 @@ echo View::factory('common/header')
 <?php
 echo View::factory('common/footer');
 //echo View::factory('profiler/stats');
+?>

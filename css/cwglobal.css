@@ -155,6 +155,17 @@ ul.bots ul {
 	text-align:center; 
 	}
 
+/*
+ * Bot Profile Page
+ */
+
+#botprofilepage {}
+
+#botinfo {border: dotted 1px #333; margin: 5px 0; padding: 5px 0; }
+#botinfo .leftinfo {text-align:right; font-weight:bold;}
+#botinfo .rightinfo {}
+#perfchart {border: dotted 1px #333; margin: 5px 0; padding: 5px 5px; }
+
 /* 
  *  Footer area
  */

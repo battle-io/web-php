@@ -65,7 +65,7 @@
 					echo '<li class="admin">',html::anchor('comments','Comments'),'</li>';
 				}
 			?>
-			<li class="rightend"><a href="#">Community</a></li> 
+			<li class="rightend"><?php echo html::anchor('scoreboard','Scoreboard'); ?></li> 
 		</ul>
 		</div>
 	</div>
@@ -84,6 +84,12 @@
 <div id="bd">
 	<div class="cenwrap">
 	<div id="yui-main">
-         <div class="yui-b">
-
+	<?php
+	if(isset($nosidebar)){
+        
+	}
+	else {
+		 echo '<div class="yui-b">';
+	}
+	?>
 
