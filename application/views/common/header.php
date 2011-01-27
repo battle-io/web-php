@@ -15,6 +15,7 @@
 		echo html::style($sheet);
 	}
 ?>
+
 </head>
 <body class="yui-skin-sam">
 <div id="doc3" class="yui-t6">

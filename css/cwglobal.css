@@ -161,10 +161,10 @@ ul.bots ul {
 
 #botprofilepage {}
 
-#botinfo {border: dotted 1px #333; margin: 5px 0; padding: 5px 0; }
+#botinfo {border: dotted 1px #333; border-right:none; margin: 5px 0; padding: 5px 0; height:253px;}
 #botinfo .leftinfo {text-align:right; font-weight:bold;}
 #botinfo .rightinfo {}
-#perfchart {border: dotted 1px #333; margin: 5px 0; padding: 5px 5px; }
+#chart {border: dotted 1px #333; margin: 5px 0; padding: 5px 5px; }
 
 /* 
  *  Footer area
