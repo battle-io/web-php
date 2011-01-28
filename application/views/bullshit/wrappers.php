@@ -6,6 +6,7 @@
 //
 //  Revision History:
 //  01/01/2011	jb		Updated file to have header
+//  01/28/2011  jb    Updates filename and description for the Java wrapper
 //
 //  Confidential: Not for use or disclosure outside APPM-UCB without
 //                        prior written consent.
@@ -25,7 +26,9 @@
 <a href="">C++ Wrapper</a>
 <br/>
 <h2>Java</h2>
-<a href="">Java Wrapper</a>
+<a href="/bullshit/wrappers/Java">Java Wrapper</a> (zip)
+<br/>
+The wrapper source code is located in the "src" folder, however the netbeans IDE can open it as an entire project.
 <br/>
 <h2>Matlab</h2>
 <a href="">Matlab Wrapper</a>

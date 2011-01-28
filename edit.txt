@@ -1,1 +1,5 @@
-Updated BS pages to have the Applied Math header (text based) information.
+Updated BS page's skin
+Added the PACK banner to the top of every page
+Added Java code wrapper
+Added login/ register links to sidebar (or user links if logged in)
+

@@ -6,6 +6,9 @@
 //
 //  Revision History:
 //  01/01/2011	jb		Updated file to have header
+//  01/24/2011  jb    Updated sidebar (menu) to put in scoreboard
+//                    / leaderboard link. Added login/ register to 
+//                    menu
 //
 //  Confidential: Not for use or disclosure outside APPM-UCB without
 //                        prior written consent.
@@ -46,14 +49,14 @@
   <body>
     <div id="bigContainer">
       <div id="container">
+        <div class="header">
+          <a href="/bullshit/">
+            <img class="centerMe" src="/media/bsimages/PACK_Header.jpg"/>
+          </a>
+        </div>
         <div class="leftSidebar" id="sidebar">
           <ul class="menu">
             <li>
-              <h2>
-                <a href="/">
-                  CodeWars.com
-                </a>
-              </h2>
             </li>
             <li class="link<?= ($title == "Bullshit Home" ? " active" : "") ?>">
               <a href="/bullshit/">
@@ -65,12 +68,27 @@
                 Code Wrappers
               </a>
             </li>
-            <li class="link">
-              Scoreboard
+            <li class="link<?= ($title == "Bullshit Scoreboards" ? " active" : "") ?>">
+              <!--<a href="/bullshit/scoreboards/">-->
+                Scoreboards
+              <!--</a>-->
             </li>
-            <li class="link">
-              Recent Games
+            <li class="link<?= ($title == "Bullshit Recent Games" ? " active" : "") ?>">
+              <!--<a href="/bullshit/recent/">-->
+                Recent Games
+              <!--</a>-->
             </li>
+            <?
+              if(isset($user)) {
+					      echo '<li class="link">',html::anchor('user/'.$user->id,$user->name()),'</li>';
+					      echo '<li class="link">',html::anchor('settings','Settings'),'</li>';
+					      echo '<li class="link">',html::anchor('logout','Logout'),'</li>';
+				      }
+				      else {
+					      echo '<li class="link">',html::anchor('login','Login'),'</li>';
+					      echo '<li class="link">',html::anchor('register','Register'),'</li>';
+				      }
+            ?>
             <li id="menu_last">
             </li>
           </ul>

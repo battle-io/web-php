@@ -15,6 +15,9 @@ body{
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 }
+img{
+  border: 0px;
+}
 .leftSidebar{
 	width: 200px;
 	float: left;
@@ -83,3 +86,11 @@ a:hover{
   color: #999;
 }
 
+.header{
+  clear: both;
+  background: #aaa;
+}
+.centerMe{
+  display: block;
+  margin: 0px auto;
+}
