@@ -1,14 +1,25 @@
 <?php
-  echo View::factory('common/header')
-    ->set('title', 'Bullshit Home');
-  echo View::factory("bullshit/submenu");
+// ************************************************************
+//
+//  Copyright 2010 Department of Applied Mathematics (APPM) at the 
+//		       University of Colorado at Boulder (UCB)
+//
+//  Revision History:
+//  01/01/2011	jb		Updated file to have header
+//
+//  Confidential: Not for use or disclosure outside APPM-UCB without
+//                        prior written consent.
+//
+// ***********************************************************
+?>
+<?php
+  echo View::factory('bullshit/common/header')
+    ->set('title','Bullshit Home');
 ?>
 <!-- Main body goes here -->
-<div id="content" class="home">
-
 <h2>Welcome</h2>
 <p>
-  The 2010 programming and cooperative knowledge (PACK) competition, sponsored by CU's <?php html::anchor('http://eef.colorado.edu','Engineering Excellence Fund'); ?>, the <?php echo html::anchor('http://amath.colorado.edu','Department of Applied Mathematics'); ?>, and <?php echo html::anchor('','Code Wars'); ?> is proud to present this year's challenge: Bullshit!
+  The 2010 programming and cooperative knowledge (PACK) competition, sponsored by CU's <a href="http://eef.colorado.edu">Engineering Excellence Fund</a>, the <a href="http://amath.colorado.edu">Department of Applied Mathematics</a>, and <a href="http://code-wars.com">Code Wars</a> is proud to present this year's challenge: Bullshit!
 </p>
 <p>
   The objective of the PACK competition is to foster innovation in mathematics and artificial intelligence through an online coding competition, open to all students at the University of Colorado at Boulder. This year, we are excited to offer several great prizes from our sponsors:
@@ -59,10 +70,10 @@
   The competition will consist of the card game ‘Bullshit’, which has several online descriptions, including:
   <ul>
     <li>
-      <?php echo html::anchor('http://www.pagat.com/beating/cheat.html','http://www.pagat.com/beating/cheat.html'); ?>
+      <a href="http://www.pagat.com/beating/cheat.html">http://www.pagat.com/beating/cheat.html</a>
     </li>
     <li>
-      <?php echo html::anchor('http://en.wikipedia.org/wiki/Bullshit_(card_game)','http://en.wikipedia.org/wiki/Bullshit_(card_game)'); ?>
+      <a href="http://en.wikipedia.org/wiki/Bullshit_(card_game)">http://en.wikipedia.org/wiki/Bullshit_(card_game)</a>
     </li>
   <ul>
 </p>
@@ -116,11 +127,5 @@ If more than one player chooses to call challenge the same claim, the priority i
   When a player has played their last card(s), as with all other rounds, the remaining players have the opportunity to challenge the call. The game is over when either: 1) No players challenge the call, or 2) The call is challenged by another player, and confirmed to be truthful.
 </p>
 
-</div>
-<!-- END Main body -->
-         </div> <!-- .yui-b for main -->
-    </div><!-- #yui-main -->
-
 <?php
-  echo View::factory('common/sidebar-basic');
-  echo View::factory('common/footer');
+  echo View::factory('bullshit/common/footer');
