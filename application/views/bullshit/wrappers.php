@@ -1,4 +1,4 @@
-<?
+<?php
 // ************************************************************
 //
 //  Copyright 2010 Department of Applied Mathematics (APPM) at the 
@@ -12,6 +12,10 @@
 //                        prior written consent.
 //
 // ***********************************************************
+?>
+<?php
+  echo View::factory('bullshit/common/header')
+    ->set('title','Bullshit Wrappers');
 ?>
 <h2>
   What are the wrappers?
@@ -36,3 +40,5 @@ The wrapper source code is located in the "src" folder, however the netbeans IDE
 <h2>Python</h2>
 <a href="">Python Wrapper</a>
 
+<?php
+  echo View::factory('bullshit/common/footer');

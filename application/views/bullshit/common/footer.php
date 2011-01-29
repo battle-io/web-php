@@ -1,4 +1,4 @@
-<?
+<?php
 // ************************************************************
 //
 //  Copyright 2010 Department of Applied Mathematics (APPM) at the 
@@ -15,7 +15,7 @@
         </div>
         <br class="clear"/>
         <div class="copyright">
-	        CodeWars &copy; <?= date("Y") ?>, sponsored by CU Boulder's <a href="http://eef.colorado.edu">Engineering Excellence Fund</a> and the <a href="http://amath.colorado.edu">Department of Applied Mathematics</a>
+	        CodeWars &copy; <?php echo date("Y") ?>, sponsored by CU Boulder's <a href="http://eef.colorado.edu">Engineering Excellence Fund</a> and the <a href="http://amath.colorado.edu">Department of Applied Mathematics</a>
         </div>
       </div>
     </div>

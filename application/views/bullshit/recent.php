@@ -1,4 +1,4 @@
-<?
+<?php
 // ************************************************************
 //
 //  Copyright 2010 Department of Applied Mathematics (APPM) at the 
@@ -12,11 +12,15 @@
 //
 // ***********************************************************
 ?>
+<?php
+  echo View::factory('bullshit/common/header')
+    ->set('title','Bullshit Recent Games');
+?>
 
 <h2>
   Recent Games
 </h2>
-<?= $recentGames ?>
+<?php echo $recentGames ?>
 
 <h2>
   My Recent Games
@@ -29,3 +33,5 @@
     echo "Please log in to view your recent games.<br/>";
   }
 ?>
+<?php
+  echo View::factory('bullshit/common/footer');

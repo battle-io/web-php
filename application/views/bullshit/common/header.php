@@ -1,4 +1,4 @@
-<?
+<?php
 // ************************************************************
 //
 //  Copyright 2010 Department of Applied Mathematics (APPM) at the 
@@ -19,7 +19,7 @@
 <html>
   <head>
     <title>
-      <?= $title ?>
+      <?php echo $title ?>
     </title>
     <?php
 	    $style = array
@@ -58,27 +58,27 @@
           <ul class="menu">
             <li>
             </li>
-            <li class="link<?= ($title == "Bullshit Home" ? " active" : "") ?>">
+            <li class="link<?php echo ($title == "Bullshit Home" ? " active" : "") ?>">
               <a href="/bullshit/">
                 Home
               </a>
             </li>
-            <li class="link<?= ($title == "Bullshit Wrappers" ? " active" : "") ?>">
+            <li class="link<?php echo ($title == "Bullshit Wrappers" ? " active" : "") ?>">
               <a href="/bullshit/wrappers/">
                 Code Wrappers
               </a>
             </li>
-            <li class="link<?= ($title == "Bullshit Scoreboards" ? " active" : "") ?>">
+            <li class="link<?php echo ($title == "Bullshit Scoreboards" ? " active" : "") ?>">
               <!--<a href="/bullshit/scoreboards/">-->
                 Scoreboards
               <!--</a>-->
             </li>
-            <li class="link<?= ($title == "Bullshit Recent Games" ? " active" : "") ?>">
+            <li class="link<?php echo ($title == "Bullshit Recent Games" ? " active" : "") ?>">
               <!--<a href="/bullshit/recent/">-->
                 Recent Games
               <!--</a>-->
             </li>
-            <?
+            <?php
               if(isset($user)) {
 					      echo '<li class="link">',html::anchor('user/'.$user->id,$user->name()),'</li>';
 					      echo '<li class="link">',html::anchor('settings','Settings'),'</li>';

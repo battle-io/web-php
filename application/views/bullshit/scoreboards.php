@@ -1,4 +1,4 @@
-<?
+<?php
 // ************************************************************
 //
 //  Copyright 2010 Department of Applied Mathematics (APPM) at the 
@@ -13,10 +13,15 @@
 //
 // ***********************************************************
 ?>
+
+<?php
+  echo View::factory('bullshit/common/header')
+    ->set('title','Bullshit Scoreboards');
+?>
 <h2>
   Leaderboards
 </h2>
-<?= $leaderboard ?>
+<?php echo $leaderboard ?>
 
 <h2>
   Scoreboard
@@ -29,3 +34,5 @@
     echo "Please log in to view your scoreboard.<br/>";
   }
 ?>
+<?php
+  echo View::factory('bullshit/common/footer');

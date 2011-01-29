@@ -1,4 +1,4 @@
-<?
+<?php
 // ************************************************************
 //
 //  Copyright 2010 Department of Applied Mathematics (APPM) at the 
@@ -11,6 +11,10 @@
 //                        prior written consent.
 //
 // ***********************************************************
+?>
+<?php
+  echo View::factory('bullshit/common/header')
+    ->set('title','Bullshit Home');
 ?>
 <!-- Main body goes here -->
 <h2>Welcome</h2>
@@ -123,3 +127,5 @@ If more than one player chooses to call challenge the same claim, the priority i
   When a player has played their last card(s), as with all other rounds, the remaining players have the opportunity to challenge the call. The game is over when either: 1) No players challenge the call, or 2) The call is challenged by another player, and confirmed to be truthful.
 </p>
 
+<?php
+  echo View::factory('bullshit/common/footer');
