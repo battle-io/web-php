@@ -31,7 +31,7 @@
   }
 
   function echoGame($game) {
-    echo '<tr><td>',$game->idGames,'</td>';
+    echo '<tr><td><a href="/bullshit/vis/',$game->idGames,'">',$game->idGames,'</a></td>';
     for($i=1;$i<=4;$i++) {
       $bot = 'Bot'.$i;
       echoBot($game->$bot,$game->Winner);

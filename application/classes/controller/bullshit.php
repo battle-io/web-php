@@ -122,4 +122,41 @@ class Controller_Bullshit extends Controller {
       ->set('recentGames', $this->getRecentGames())
       ->set('myRecentGames', $this->getMyRecentGames());
   }
+  
+  private function toIntermediate($str){
+    $arr = explode("\n", $str);
+    foreach($arr AS $index=>$row){
+      $arr[$index] = preg_replace(array("(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d+ - )", "/<(.*?)>/"), array("", "$1"), $row);
+      if(preg_match("/played cards : /", $row)){
+        $arr[$index] = preg_replace("/(.*?) played cards : ([\d{1,2}?=,]+) expected (.*?)$/", "\t\t<bot>$1</bot>\n\t\t<type>played</type>\n\t\t<cards>$2</cards>", $arr[$index]);
+      }
+      else if(preg_match("/the cards/", $row)){
+        $arr[$index] = preg_replace("/(.*?) received the cards ([\d{1,2}?=,]+) due to a bullshit call by (.*?)$/", "\t\t<bot>$1</bot>\n\t\t<type>received</type>\n\t\t<cards>$2</cards>\n\t\t<from>$3</from>", $arr[$index]);
+      }
+      else if(preg_match("/Dealt hand/", $row)){
+        $arr[$index] = preg_replace("/Dealt hand ([\d{1,2}?=,]+) to bot (.*?)$/", "\t\t<bot>Bot $2</bot>\n\t\t<type>deal</type>\n\t\t<cards>$1</cards>", $arr[$index]);
+      }
+      else if(preg_match("/Winner was found for game/", $row)){
+        $arr[$index] = preg_replace("/A Winner was found for game (.*?) it was bot (.*?)$/", "\t\t<bot>Bot $2</bot>\n\t\t<type>win</type>\n\t\t<cards></cards>", $arr[$index]);
+      }
+      else{
+        $arr[$index] = null;
+      }
+    }
+    return $arr;
+  }
+  
+  public function action_game($gameId){
+    $gameInfo = ORM::factory('bullshit')
+      ->where('idGames', '=', $gameId);
+      ->find();
+      $game = $this->toIntermediate($gameInfo->GameHistory);
+      $this->request->response = View::factory("bullshit/game")
+      ->set('game', $game);
+  }
+  
+  public function action_vis($gameId){
+    $this->request->response = View::factory("bullshit/vis")
+    ->set("gameId", $gameId);
+  }
 }
