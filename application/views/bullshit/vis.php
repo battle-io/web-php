@@ -18,11 +18,11 @@
     ->set('title','Bullshit Scoreboards');
 ?>
 <h2>
-  Game Visualization
+  Game <? echo $gameId; ?> Visualization
 </h2>
 
 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="550" height="400" id="pack_vis" align="middle">
-	<param name="movie" value="/media/pack_vis.swf?game=<?= $gameId ?>" />
+	<param name="movie" value="/media/pack_vis.swf?game=<? echo $gameId; ?>" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -34,8 +34,8 @@
 	<param name="salign" value="" />
 	<param name="allowScriptAccess" value="sameDomain" />
 	<!--[if !IE]>-->
-	<object type="application/x-shockwave-flash" data="/media/pack_vis.swf?game=<?= $gameId ?>" width="550" height="400">
-		<param name="movie" value="/media/pack_vis.swf?game=<?= $gameId ?>" />
+	<object type="application/x-shockwave-flash" data="/media/pack_vis.swf?game=<? echo $gameId; ?>" width="550" height="400">
+		<param name="movie" value="/media/pack_vis.swf?game=<? echo $gameId; ?>" />
 		<param name="quality" value="high" />
 		<param name="bgcolor" value="#ffffff" />
 		<param name="play" value="true" />

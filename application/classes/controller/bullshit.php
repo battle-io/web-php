@@ -148,11 +148,11 @@ class Controller_Bullshit extends Controller {
   
   public function action_game($gameId){
     $gameInfo = ORM::factory('bullshit')
-      ->where('idGames', '=', $gameId);
-      ->find();
-      $game = $this->toIntermediate($gameInfo->GameHistory);
-      $this->request->response = View::factory("bullshit/game")
-      ->set('game', $game);
+    ->where('idGames', '=', $gameId)
+    ->find();
+    $game = $this->toIntermediate($gameInfo->GameHistory);
+    $this->request->response = View::factory("bullshit/game")
+    ->set('game', $game);
   }
   
   public function action_vis($gameId){
