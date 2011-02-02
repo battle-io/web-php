@@ -10,7 +10,6 @@ class Model_Bullshit extends ORM {
     'bot3' => array('model'=>'bot','foreign_key'=>'Bot3'),
     'bot4' => array('model'=>'bot','foreign_key'=>'Bot4'),
     'winner' => array('model'=>'bot','foreign_key'=>'Winner'),
-    'game' => array('model' => 'game', 'foreign_key' => 'GameHistory'),
   );
 
   public function bot($id) {
