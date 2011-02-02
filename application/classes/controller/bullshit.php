@@ -146,13 +146,25 @@ class Controller_Bullshit extends Controller {
     return $arr;
   }
   
+  private function toXML($arr, $i){
+    $op = "";
+    $op .= "<" . "?xml version='1.0'?" . ">\n<game id=\"" . $i . "\">\n";
+    foreach($arr as $b){
+      if($b != null){
+        $op .= "\t<move>\n" . $b . "\n\t</move>\n";
+      }
+    }
+    $op .= "</game>";
+    return $op;
+  }
+  
   public function action_game($gameId){
     $gameInfo = ORM::factory('bullshit')
     ->where('idGames', '=', $gameId)
     ->find();
     $game = $this->toIntermediate($gameInfo->GameHistory);
     $this->request->response = View::factory("bullshit/game")
-    ->set('game', $game);
+    ->set('game', $this->toXML($game, $gameId));
   }
   
   public function action_vis($gameId){
