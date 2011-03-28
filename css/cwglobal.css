@@ -166,23 +166,40 @@ ul.bots ul {
 #botinfo .rightinfo {}
 #chart {border: dotted 1px #333; margin: 5px 0; padding: 5px 5px; }
 
+
+/*
+ * Sticks footer to bottom of page. 
+ * 
+*/
+
+html, body, #doc3 { height: 100%; }
+body > #doc4 {height: auto; min-height: 100%;}
+#bd {overflow:auto; padding-bottom: 120px; } /* must be same height as the footer - 290 */
+#ft {position: relative; margin-top: -120px; /* negative value of footer height */ 
+	height: 120px; clear:both; }
+/*Opera Fix*/
+body:before { content:""; height:100%; float:left; width:0; margin-top:-31415px;}
+
+
 /* 
  *  Footer area
  */
-
+ 
 #ft {
 	clear:both; 
-	padding-top:1em;
+	padding:1em 0 2em;
 	background: #1600ad;
 	color: #FFF; 
 	font-family: garamond;
+	margin-top:2em;
 }
  
 #footersection {
 		width:988px; 
 		margin: 0 auto;   
 		}
-#footersection h2 {font-family:garamond; margin-top:0px;font-size:150%; font-weight:800;}
+		
+#footersection h2 {font-family:garamond; margin:0 0 0.5em;font-size:150%; font-weight:800;}
 #footersection li {padding:0px; font-size:105%}
 #footersection a {color:#FFF;}
 #footersection .copyright {text-align:right; margin-top:3em; margin-right:8%;}

@@ -1,23 +1,6 @@
-</div></div> <!-- .cenwrap and #bd -->
-<?php 
-/*
- * 
+</div>
+</div> <!-- .cenwrap and #bd -->
 
-Grockit Academy - Grades 7-12 Math and English
-http://grockit.com/academy/home
-
-Publishers « Vast
-http://about.vast.com/autos/publishers/ 
-
-About Flowtown / Flowtown
-http://www.flowtown.com/about-flowtown
-
-HootSuite - Social Media Dashboard for Teams using Twitter, Facebook, Linkedin
-http://hootsuite.com/
-
- * 
- */
-?>
 <div id="ft">
 <div id="footersection">
 	<div class="yui-g">
