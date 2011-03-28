@@ -18,7 +18,12 @@
 
 </head>
 <body class="yui-skin-sam">
-<div id="doc3" class="yui-t6">
+<div id="doc3" <?php 
+	// if layout == 'nosidebar', don't do anything
+	if(isset($layout)) { if($layout=="nosidebar") echo ''; }
+	// else use yui css grids preset t6 
+	else echo 'class="yui-t6"' ?> 
+	> 
 <!-- id hd is the first YUI horizontal stack, the masthead -->
 <div id="hd">
 	<div id="headersection" class="cenwrap">

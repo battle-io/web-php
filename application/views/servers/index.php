@@ -32,6 +32,11 @@ echo View::factory('common/header')
 	echo '</div>';
 ?>
 </div>
+
+<!-- END Main body -->
+         </div> <!-- .yui-b for main -->
+    </div><!-- #yui-main -->
+
 <?php
 echo View::factory('common/footer');
 //echo View::factory('profiler/stats');

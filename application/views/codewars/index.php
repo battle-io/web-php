@@ -1,6 +1,7 @@
 <?php
 echo View::factory('common/header')
-	->set('title','Home');
+	->set('title','Home')
+	->set('layout','nosidebar');
 ?>
          
 <!-- Main body goes here -->
@@ -56,7 +57,7 @@ echo View::factory('common/header')
     </div><!-- #yui-main -->
 
 <?php
-echo View::factory('common/sidebar-basic');
+// echo View::factory('common/sidebar-basic');
 ?>
 
 <?php

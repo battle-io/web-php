@@ -41,6 +41,12 @@ echo View::factory('common/comments')
         ->set('title',$server->name)
         ->set('parent_id',$server->id)
         ->bind('comments',$comments);
+?>
 
+<!-- END Main body -->
+         </div> <!-- .yui-b for main -->
+    </div><!-- #yui-main -->
+        
+<?php 
 echo View::factory('common/footer');
 //echo View::factory('profiler/stats');
