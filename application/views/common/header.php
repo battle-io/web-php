@@ -62,7 +62,7 @@
 		</div>
     	<ul id="topnavbar" class="cenwrap"> 
 			<li class="dim"><?php echo html::anchor('','Home'); ?></li> 
-			<li><?php echo html::anchor('gettingstarted','Getting Started'); ?></li>  
+			<li><?php echo html::anchor('getstarted','Get Started'); ?></li>  
 			<li><?php echo html::anchor('challenges','Challenges'); ?></li> 
 			<li><?php echo html::anchor('servers','Servers'); ?></li> 
 			<?php

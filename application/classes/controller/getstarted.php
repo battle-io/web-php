@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Controller_GettingStarted extends Controller {
+class Controller_GetStarted extends Controller {
 	public function before() {
                 parent::before();
 
@@ -14,6 +14,6 @@ class Controller_GettingStarted extends Controller {
 	}
 
 	public function action_index() {
-		$this->request->response = View::factory('codewars/getting-started');
+		$this->request->response = View::factory('codewars/get-started');
 	}
 }

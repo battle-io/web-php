@@ -1,6 +1,6 @@
 <?php
 echo View::factory('common/header')
-        ->set('title','Getting Started');
+        ->set('title','Get Started');
 ?>
          
 <!-- Main body goes here -->
