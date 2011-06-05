@@ -64,7 +64,6 @@
 			<li class="dim"><?php echo html::anchor('','Home'); ?></li> 
 			<li><?php echo html::anchor('getstarted','Get Started'); ?></li>  
 			<li><?php echo html::anchor('challenges','Challenges'); ?></li> 
-			<li><?php echo html::anchor('servers','Servers'); ?></li> 
 			<?php
 				if(isset($user) && $user->has_role('admin')) {
 					echo '<li class="admin">',html::anchor('users','Users'),'</li>';

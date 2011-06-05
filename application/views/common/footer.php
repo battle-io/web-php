@@ -25,7 +25,10 @@
 	</div></div>
 	<!-- Column 3 -->
 	<div class="yui-g"><div class="yui-u first">
-	
+	<h2>Shortcuts</h2>
+	<ul> 
+	  <li><?php echo html::anchor('servers','Servers'); ?></li> 
+	</ul>
 	</div>
 	<!-- Column 4 -->
 	<div class="yui-u">
