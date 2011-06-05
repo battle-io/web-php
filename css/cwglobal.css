@@ -18,7 +18,7 @@ html {
  
 
 a { text-decoration:none; color: #551A8B; }
-li { display:block; list-style-type:none; padding: 0 7px; }
+li { display:block; list-style-type:none;}
 
 /* Hgroup */ 
 h1 { font-size: 48px; font-family: Courier New, monospace;}
