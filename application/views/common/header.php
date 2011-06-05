@@ -62,6 +62,7 @@
 		</div>
     	<ul id="topnavbar" class="cenwrap"> 
 			<li class="dim"><?php echo html::anchor('','Home'); ?></li> 
+			<li class="strong"><a href="#">Host a Competition</a></li>
 			<li><?php echo html::anchor('getstarted','Get Started'); ?></li>  
 			<li><?php echo html::anchor('challenges','Challenges'); ?></li> 
 			<?php
